@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ai-builders75.github.io/Wiki/404%20memorization_app/sitemap.xml
