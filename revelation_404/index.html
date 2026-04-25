@@ -1983,6 +1983,28 @@
             
             // Ensure first stage is ready for fast load
             loadStage(1);
+
+            // Handle virtual keyboard overlap on mobile (Levels 4 and 5)
+            const typingInput = document.getElementById('typingInput');
+            if (typingInput) {
+                typingInput.addEventListener('focus', function() {
+                    const adContainer = document.querySelector('.ad-container-bottom');
+                    if(adContainer) adContainer.style.display = 'none';
+                    document.querySelector('.app-container').style.paddingBottom = '0px';
+                    
+                    // Allow time for keyboard to open and then scroll content to bottom
+                    setTimeout(() => {
+                        const content = document.querySelector('.content');
+                        if(content) content.scrollTop = content.scrollHeight;
+                    }, 300);
+                });
+
+                typingInput.addEventListener('blur', function() {
+                    const adContainer = document.querySelector('.ad-container-bottom');
+                    if(adContainer) adContainer.style.display = 'flex';
+                    document.querySelector('.app-container').style.paddingBottom = '70px';
+                });
+            }
         };
 
         // 키보드 화살표 키로 이전/다음 구절 이동
