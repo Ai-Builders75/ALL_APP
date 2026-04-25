@@ -1386,16 +1386,40 @@
                 keyboardWords.push(allKeywords.pop());
             }
             
+            // Update ad banner position based on level
+            const adContainer = document.querySelector('.ad-container-bottom');
+            const appContainer = document.querySelector('.app-container');
+
             if (currentLevel >= 4) {
                 document.getElementById('keyboard').style.display = 'none';
                 document.getElementById('typingContainer').style.display = 'flex';
                 document.getElementById('typingInput').value = '';
                 document.getElementById('typingInput').placeholder = '정답을 직접 입력하세요';
                 document.getElementById('typingInput').focus();
+
+                if(adContainer) {
+                    adContainer.style.top = '0';
+                    adContainer.style.bottom = 'auto';
+                    adContainer.style.display = 'flex'; // Ensure visible
+                }
+                if(appContainer) {
+                    appContainer.style.paddingTop = '60px'; // Room for top banner
+                    appContainer.style.paddingBottom = '0px';
+                }
             } else {
                 document.getElementById('keyboard').style.display = 'grid';
                 document.getElementById('typingContainer').style.display = 'none';
                 renderKeyboard(keyboardWords);
+
+                if(adContainer) {
+                    adContainer.style.top = 'auto';
+                    adContainer.style.bottom = '0';
+                    adContainer.style.display = 'flex'; // Ensure visible
+                }
+                if(appContainer) {
+                    appContainer.style.paddingTop = '0px';
+                    appContainer.style.paddingBottom = '70px'; // Room for bottom banner
+                }
             }
             updateProgress();
             
@@ -1983,28 +2007,6 @@
             
             // Ensure first stage is ready for fast load
             loadStage(1);
-
-            // Handle virtual keyboard overlap on mobile (Levels 4 and 5)
-            const typingInput = document.getElementById('typingInput');
-            if (typingInput) {
-                typingInput.addEventListener('focus', function() {
-                    const adContainer = document.querySelector('.ad-container-bottom');
-                    if(adContainer) adContainer.style.display = 'none';
-                    document.querySelector('.app-container').style.paddingBottom = '0px';
-                    
-                    // Allow time for keyboard to open and then scroll content to bottom
-                    setTimeout(() => {
-                        const content = document.querySelector('.content');
-                        if(content) content.scrollTop = content.scrollHeight;
-                    }, 300);
-                });
-
-                typingInput.addEventListener('blur', function() {
-                    const adContainer = document.querySelector('.ad-container-bottom');
-                    if(adContainer) adContainer.style.display = 'flex';
-                    document.querySelector('.app-container').style.paddingBottom = '70px';
-                });
-            }
         };
 
         // 키보드 화살표 키로 이전/다음 구절 이동
