@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>404 팡팡!! (Prototype v2)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Jua', sans-serif;
+            background: #87CEEB;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            user-select: none;
+            -webkit-user-select: none;
+            overflow: hidden;
+            touch-action: none;
+        }
+
+        .header {
+            width: 100%;
+            background: #FF6B6B;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+
+        .wave-info {
+            font-size: 1rem;
+            margin-top: 5px;
+            color: #FFE66D;
+        }
+
+        /* 새롭게 추가된 프리뷰(스캔용) 텍스트 영역 */
+        .preview-box {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 10px 20px;
+            margin-top: 15px;
+            font-size: 1.3rem;
+            color: #555;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 90%;
+            border: 2px dashed #4ECDC4;
+        }
+
+        .target-board {
+            background: white;
+            border: 4px solid #4ECDC4;
+            border-radius: 15px;
+            padding: 15px 20px;
+            margin: 15px;
+            font-size: 1.4rem;
+            color: #333;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .word-slot {
+            border-bottom: 3px dashed #ccc;
+            padding: 0 5px;
+            min-width: 40px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FF6B6B;
+            transition: all 0.3s;
+        }
+
+        .word-slot.filled {
+            border-bottom: 3px solid #4ECDC4;
+            color: #4ECDC4;
+            transform: scale(1.1);
+        }
+
+        .game-area {
+            flex: 1;
+            width: 100%;
+            max-width: 500px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 15px;
+            padding: 20px;
+            box-sizing: border-box;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="%237bc043" width="100" height="100"/><circle cx="50" cy="50" r="10" fill="%235a962a"/></svg>');
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            box-shadow: inset 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .hole {
+            position: relative;
+            background: #3e2723;
+            border-radius: 50%;
+            width: 100%;
+            height: 0;
+            padding-bottom: 100%;
+            box-shadow: inset 0px -10px 10px rgba(0,0,0,0.5);
+            overflow: hidden;
+        }
+
+        .mole {
+            position: absolute;
+            bottom: -100%;
+            left: 10%;
+            width: 80%;
+            height: 85%;
+            background: #d4a373;
+            border-radius: 50% 50% 10% 10%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 1.1rem;
+            color: #fff;
+            border: 3px solid #8b5a2b;
+            box-sizing: border-box;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+            transition: bottom 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            line-height: 1.2;
+            word-break: keep-all;
+        }
+
+        .mole.up {
+            bottom: 5%;
+        }
+
+        .mole.hit {
+            background: #FF6B6B;
+            border-color: #c0392b;
+            transform: scale(0.9);
+        }
+
+        .mole.wrong {
+            background: #7f8c8d;
+        }
+
+        .particle {
+            position: absolute;
+            pointer-events: none;
+            width: 15px;
+            height: 15px;
+            background: #FFD93D;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: pop 0.5s ease-out forwards;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(0.5) translate(0, 0); opacity: 1; }
+            100% { transform: scale(1.5) translate(var(--tx), var(--ty)); opacity: 0; }
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.85);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            color: white;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .btn {
+            background: #4ECDC4;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            border-radius: 30px;
+            margin-top: 30px;
+            cursor: pointer;
+            font-family: 'Jua', sans-serif;
+            box-shadow: 0 5px 0 #3b9b94;
+        }
+        .btn:active {
+            transform: translateY(5px);
+            box-shadow: none;
+        }
+
+        #final-text-container {
+            font-size: 2.5rem;
+            line-height: 1.6;
+            padding: 20px;
+            word-break: keep-all;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 5px;
+        }
+        
+        .char-span {
+            color: #444; /* 어두운 회색 (비활성) */
+            transition: color 0.1s, text-shadow 0.1s, transform 0.1s;
+        }
+
+        .char-span.active {
+            color: #FFE66D;
+            text-shadow: 0 0 15px #FFE66D, 0 0 30px #FF6B6B;
+            transform: translateY(-5px);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        404 팡팡!! 🔨
+        <div class="wave-info" id="wave-info">Wave 1 / 3</div>
+    </div>
+
+    <!-- 스캔용 성구 표시 박스 -->
+    <div class="preview-box" id="preview-box">
+        <!-- 텍스트 주입 -->
+    </div>
+
+    <div class="target-board" id="target-board">
+        <!-- Slots will be injected here -->
+    </div>
+
+    <div class="game-area" id="game-area">
+        <div class="hole"><div class="mole" id="m0"></div></div>
+        <div class="hole"><div class="mole" id="m1"></div></div>
+        <div class="hole"><div class="mole" id="m2"></div></div>
+        <div class="hole"><div class="mole" id="m3"></div></div>
+        <div class="hole"><div class="mole" id="m4"></div></div>
+        <div class="hole"><div class="mole" id="m5"></div></div>
+        <div class="hole"><div class="mole" id="m6"></div></div>
+        <div class="hole"><div class="mole" id="m7"></div></div>
+        <div class="hole"><div class="mole" id="m8"></div></div>
+    </div>
+
+    <!-- 시작 오버레이 -->
+    <div class="overlay" id="start-overlay">
+        요한계시록 1:1<br>
+        <span style="font-size:1.2rem; color:#ccc; margin-top:10px;">빠르게 스캔하고 두더지를 때리세요!</span>
+        <button class="btn" onclick="startGame()">게임 시작!</button>
+    </div>
+
+    <!-- 피날레 오버레이 (성구 전체 낭독) -->
+    <div class="overlay" id="final-overlay" style="display:none; background: rgba(0,0,0,0.95);">
+        <div id="final-text-container"></div>
+        <div id="repeat-prompt" style="font-size:1.5rem; color:#4ECDC4; margin-top:20px; opacity:0; transition:opacity 0.5s;">
+            큰 소리로 따라 읽어보세요! 🎤
+        </div>
+        <button class="btn" id="restart-btn" style="display:none;" onclick="location.reload()">완벽히 외웠습니다!</button>
+    </div>
+
+    <script>
+        const WAVES = [
+            ["예수", "그리스도의", "계시라"],
+            ["이는", "하나님이", "그에게", "주사"],
+            ["반드시", "속히", "일어날", "일들을"]
+        ];
+
+        const DISTRACTORS = {
+            "예수": ["예슈", "예수님", "요한"],
+            "그리스도의": ["기독교의", "그리스도", "말씀의"],
+            "계시라": ["게시라", "계시록", "기시라"],
+            "이는": ["저눈", "아는", "어느"],
+            "하나님이": ["하느님이", "여호와가", "하나님"],
+            "그에게": ["그애게", "너에게", "저에게"],
+            "주사": ["주셔", "조사", "추사"],
+            "반드시": ["반듯히", "꼭", "번듯이"],
+            "속히": ["속이", "빨리", "숙히"],
+            "일어날": ["이러날", "일어난", "일으킬"],
+            "일들을": ["일들은", "일꾼을", "말씀을"]
+        };
+
+        let currentWaveIndex = 0;
+        let currentWordIndex = 0;
+        let isPlaying = false;
+        let activeTimeouts = [];
+
+        const targetBoard = document.getElementById('target-board');
+        const previewBox = document.getElementById('preview-box');
+        const waveInfo = document.getElementById('wave-info');
+        const moles = document.querySelectorAll('.mole');
+
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playTone(freq, type, duration, vol=1) {
+            if(audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            if(type==='triangle') osc.frequency.exponentialRampToValueAtTime(freq/2, audioCtx.currentTime+duration);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+        }
+
+        function playHit() { playTone(600, 'sine', 0.1, 0.5); setTimeout(()=>playTone(800, 'sine', 0.2, 0.5), 50); }
+        function playWrong() { playTone(150, 'sawtooth', 0.3, 0.3); }
+        function playWaveClear() { playTone(440, 'sine', 0.1); setTimeout(()=>playTone(554, 'sine', 0.1), 100); setTimeout(()=>playTone(659, 'sine', 0.3), 200); }
+
+        function speak(text, rate=1.2, pitch=1) {
+            if('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const msg = new SpeechSynthesisUtterance(text);
+                msg.lang = 'ko-KR';
+                msg.rate = rate; 
+                msg.pitch = pitch;
+                window.speechSynthesis.speak(msg);
+            }
+        }
+
+        function initWave() {
+            currentWordIndex = 0;
+            waveInfo.innerText = `Wave ${currentWaveIndex + 1} / ${WAVES.length}`;
+            const waveWords = WAVES[currentWaveIndex];
+            
+            // 프리뷰 박스에 현재 웨이브 성구 전체 표시 (스캔용)
+            previewBox.innerText = waveWords.join(" ");
+            
+            targetBoard.innerHTML = '';
+            waveWords.forEach((word, idx) => {
+                const div = document.createElement('div');
+                div.className = 'word-slot';
+                div.id = `slot-${idx}`;
+                div.innerText = "?";
+                targetBoard.appendChild(div);
+            });
+        }
+
+        function getDistractor(correctWord) {
+            if(DISTRACTORS[correctWord]) {
+                const opts = DISTRACTORS[correctWord];
+                return opts[Math.floor(Math.random() * opts.length)];
+            }
+            return "오답";
+        }
+
+        function spawnMoles() {
+            if(!isPlaying) return;
+
+            moles.forEach(m => {
+                m.classList.remove('up', 'hit', 'wrong');
+                m.innerText = '';
+                m.onclick = null;
+            });
+
+            const waveWords = WAVES[currentWaveIndex];
+            const targetWord = waveWords[currentWordIndex];
+
+            let numMoles = 2 + Math.floor(Math.random() * 2); 
+            
+            let holes = [];
+            while(holes.length < numMoles) {
+                let r = Math.floor(Math.random() * 9);
+                if(holes.indexOf(r) === -1) holes.push(r);
+            }
+
+            const correctHole = holes[0];
+            const moleUI = moles[correctHole];
+            moleUI.innerText = targetWord;
+            moleUI.dataset.isCorrect = "true";
+            
+            for(let i=1; i<holes.length; i++) {
+                const m = moles[holes[i]];
+                m.innerText = getDistractor(targetWord);
+                m.dataset.isCorrect = "false";
+            }
+
+            holes.forEach(h => {
+                const m = moles[h];
+                m.classList.add('up');
+                m.onclick = (e) => handleHit(m, e);
+            });
+
+            const shoutingHole = holes[Math.floor(Math.random()*holes.length)];
+            speak(moles[shoutingHole].innerText, 1.5, 1.2);
+
+            const t1 = setTimeout(() => {
+                holes.forEach(h => moles[h].classList.remove('up'));
+                const t2 = setTimeout(spawnMoles, 500);
+                activeTimeouts.push(t2);
+            }, 1500);
+            activeTimeouts.push(t1);
+        }
+
+        function createParticles(x, y) {
+            for(let i=0; i<5; i++){
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.left = x + 'px';
+                p.style.top = y + 'px';
+                const tx = (Math.random() - 0.5) * 100;
+                const ty = (Math.random() - 0.5) * 100;
+                p.style.setProperty('--tx', tx + 'px');
+                p.style.setProperty('--ty', ty + 'px');
+                document.body.appendChild(p);
+                setTimeout(()=>p.remove(), 500);
+            }
+        }
+
+        function handleHit(mole, event) {
+            if(!mole.classList.contains('up')) return;
+            mole.classList.remove('up');
+            
+            if(mole.dataset.isCorrect === "true") {
+                playHit();
+                mole.classList.add('hit');
+                createParticles(event.clientX, event.clientY);
+                
+                const slot = document.getElementById(`slot-${currentWordIndex}`);
+                slot.innerText = WAVES[currentWaveIndex][currentWordIndex];
+                slot.classList.add('filled');
+                
+                currentWordIndex++;
+                clearAllTimeouts();
+                
+                if(currentWordIndex >= WAVES[currentWaveIndex].length) {
+                    handleWaveClear();
+                } else {
+                    activeTimeouts.push(setTimeout(spawnMoles, 300));
+                }
+            } else {
+                playWrong();
+                mole.classList.add('wrong');
+                speak("아얏!");
+            }
+        }
+
+        function clearAllTimeouts() {
+            activeTimeouts.forEach(t => clearTimeout(t));
+            activeTimeouts = [];
+        }
+
+        function handleWaveClear() {
+            playWaveClear();
+            const fullSentence = WAVES[currentWaveIndex].join(" ");
+            speak(fullSentence, 1.2, 1.0); 
+            
+            document.getElementById('wave-info').innerText = "Wave Clear!! ✨";
+            previewBox.style.borderColor = "#FFE66D";
+            previewBox.style.background = "#FFE66D";
+            previewBox.style.color = "#333";
+            
+            setTimeout(() => {
+                previewBox.style.borderColor = "#4ECDC4";
+                previewBox.style.background = "rgba(255, 255, 255, 0.9)";
+                previewBox.style.color = "#555";
+                
+                currentWaveIndex++;
+                if(currentWaveIndex >= WAVES.length) {
+                    triggerFinale();
+                } else {
+                    initWave();
+                    spawnMoles();
+                }
+            }, 2000); // 2초 뒤 다음 웨이브
+        }
+
+        /* -------------------------------------------
+           대망의 피날레 (전체 문장 타이핑 + 음성 낭독 x2)
+           ------------------------------------------- */
+        function triggerFinale() {
+            document.getElementById('final-overlay').style.display = 'flex';
+            const container = document.getElementById('final-text-container');
+            
+            // 모든 웨이브를 합친 전체 문장
+            const fullText = WAVES.map(wave => wave.join(" ")).join(" ");
+            
+            // 글자별로 span 태그 생성 (애니메이션 용도)
+            container.innerHTML = '';
+            for(let char of fullText) {
+                if(char === " ") {
+                    container.innerHTML += "&nbsp;";
+                } else {
+                    const span = document.createElement('span');
+                    span.className = 'char-span';
+                    span.innerText = char;
+                    container.appendChild(span);
+                }
+            }
+            
+            // 1초 뒤 첫 번째 낭독 시작
+            setTimeout(() => playFinaleSequence(fullText, container, 1), 1000);
+        }
+
+        function playFinaleSequence(fullText, container, attempt) {
+            // TTS 속도 고려하여 글자당 시간 계산 (대략 200ms)
+            const charDuration = 200; 
+            
+            speak(fullText, 0.9, 1.0); // 조금 천천히 또박또박
+            
+            const spans = container.querySelectorAll('.char-span');
+            spans.forEach((span, i) => {
+                setTimeout(() => {
+                    span.classList.add('active');
+                }, i * charDuration);
+            });
+
+            // 낭독이 끝날 즈음 (글자수 * 200ms + 여유시간)
+            const totalDuration = spans.length * charDuration + 1000;
+            
+            setTimeout(() => {
+                if(attempt === 1) {
+                    // 첫 번째 낭독 끝 -> 상태 초기화 및 프롬프트 띄우기
+                    spans.forEach(span => span.classList.remove('active'));
+                    document.getElementById('repeat-prompt').style.opacity = 1;
+                    
+                    // 1.5초 대기 후 두 번째 낭독 (따라 읽기)
+                    setTimeout(() => playFinaleSequence(fullText, container, 2), 1500);
+                } else {
+                    // 두 번째 낭독 끝 -> 다시 하기 버튼 표시
+                    document.getElementById('restart-btn').style.display = 'block';
+                }
+            }, totalDuration);
+        }
+
+        function startGame() {
+            if(audioCtx.state === 'suspended') audioCtx.resume();
+            speak("준비, 시작!", 1.5, 1.5);
+            document.getElementById('start-overlay').style.display = 'none';
+            isPlaying = true;
+            currentWaveIndex = 0;
+            initWave();
+            setTimeout(spawnMoles, 1000);
+        }
+
+    </script>
+</body>
+</html>
