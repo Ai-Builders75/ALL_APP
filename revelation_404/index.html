@@ -1351,7 +1351,8 @@
             currentChapter = data.chapter;
             chapterSelect.value = data.chapter;
 
-
+            // Update level dropdown button text to reflect the current level
+            document.getElementById('levelDropdownBtn').innerHTML = `📊 ${currentLevel}단계 ▼`;
             
             // Generate HTML with dynamic level blanks
             let stageDesc = isIncorrectMode ? `<span style="color:#ef4444;">[오답복습]</span> ${data.verseRef}` : `${data.verseRef} (전체 404구절 중 ${stageNumber}번째)`;
