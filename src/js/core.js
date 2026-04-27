@@ -14,6 +14,41 @@ let incorrectStages = JSON.parse(localStorage.getItem('incorrectStages')) || [];
 let isIncorrectMode = false;
 let mistakesThisStage = 0;
 
+let isSoundEnabled = true;
+
+function toggleSound() {
+    isSoundEnabled = !isSoundEnabled;
+    const btn = document.getElementById('soundToggleBtn');
+    if (btn) {
+        btn.innerHTML = isSoundEnabled ? '🔊' : '🔇';
+        btn.style.opacity = isSoundEnabled ? '1' : '0.5';
+    }
+}
+
+function playErrorSound() {
+    if (!isSoundEnabled) return;
+    try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        
+        oscillator.type = 'sawtooth';
+        oscillator.frequency.setValueAtTime(150, audioCtx.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(80, audioCtx.currentTime + 0.15);
+        
+        gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15);
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.15);
+    } catch(e) {
+        console.log('Audio not supported or blocked');
+    }
+}
+
 // 특수 예외 처리어 사전 (키워드 -> 성경 본문 내의 실제 텍스트)
 const synonyms = {};
 
@@ -133,7 +168,7 @@ function generateVerseHTML(verseText, coreKeywords) {
         targetKeywords = targetKeywords.concat(getExtraKeywords(verseText, coreKeywords, count));
     } else if (currentLevel === 5) {
         let allWords = verseText.replace(/[.,!?]/g, '').split(' ').filter(w => w.length > 0);
-        targetKeywords = targetKeywords.concat(getExtraKeywords(verseText, coreKeywords, allWords.length, true));
+        targetKeywords = [...new Set(allWords)];
     }
     
     // Sort target keywords by length descending so longer words get replaced first

@@ -157,6 +157,7 @@ function submitTyping() {
             if (typeof handleStageClear === 'function') handleStageClear();
         }
     } else {
+        if (typeof playErrorSound === 'function') playErrorSound();
         mistakesThisStage++;
         if (!incorrectStages.includes(currentStage)) {
             incorrectStages.push(currentStage);
