@@ -178,7 +178,7 @@
 
                 <div class="typing-container" id="typingContainer" style="display: none;">
                     <button class="typing-btn hint-btn" onclick="showChoseongHint()" id="hintBtn" title="초성 힌트 보기">💡</button>
-                    <input type="text" id="typingInput" class="typing-input" placeholder="정답을 입력하세요" onkeydown="handleTypingKeypress(event)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                    <input type="text" id="typingInput" class="typing-input" placeholder="정답을 입력하세요" onkeydown="handleTypingKeypress(event)" oninput="handleTypingInput(event)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
                     <button class="typing-btn" onclick="submitTyping()">확인</button>
                 </div>
             </div>
@@ -469,24 +469,32 @@
         }
 
         function handleTypingKeypress(e) {
-            if (e.key === 'Enter') {
+            // IME 조합 중이거나 모바일 키보드 버그(229)일 때는 Enter 무시
+            if (e.key === 'Enter' && !e.isComposing && e.keyCode !== 229) {
+                e.preventDefault();
                 submitTyping();
-            } else if (e.key === ' ') {
-                if (currentBlankIndex >= blanks.length) return;
-                const inputEl = document.getElementById('typingInput');
-                const userInput = inputEl.value;
-                const currentBlank = blanks[currentBlankIndex];
-                const answer = currentBlank.getAttribute('data-answer');
-                const regexRemoveSpecial = /[^가-힣a-zA-Z0-9]/g;
-                const normalizedInput = userInput.normalize('NFC').replace(regexRemoveSpecial, '');
-                const normalizedAnswer = (synonyms[answer] || answer).normalize('NFC').replace(regexRemoveSpecial, '');
-                
-                // 입력값이 이미 정답과 일치할 때만 스페이스바를 제출(확인) 키로 사용
-                if (normalizedInput === normalizedAnswer && normalizedInput.length > 0) {
-                    e.preventDefault();
-                    submitTyping();
-                }
-                // 일치하지 않으면 기본 동작(띄어쓰기 입력) 수행
+            }
+            // 스페이스바(e.key === ' ')는 이제 아무것도 방해하지 않고 자연스럽게 띄어쓰기가 입력되도록 둡니다.
+        }
+
+        // 입력될 때마다 실시간으로 정답을 확인하여, 맞으면 즉시 다음 빈칸으로 넘어가는 기능 (마법 같은 사용자 경험)
+        function handleTypingInput(e) {
+            if (currentBlankIndex >= blanks.length) return;
+            const inputEl = document.getElementById('typingInput');
+            const userInput = inputEl.value;
+            
+            // 입력값이 비어있으면 무시
+            if (!userInput.trim()) return;
+            
+            const currentBlank = blanks[currentBlankIndex];
+            const answer = currentBlank.getAttribute('data-answer');
+            const regexRemoveSpecial = /[^가-힣a-zA-Z0-9]/g;
+            const normalizedInput = userInput.normalize('NFC').replace(regexRemoveSpecial, '');
+            const normalizedAnswer = (synonyms[answer] || answer).normalize('NFC').replace(regexRemoveSpecial, '');
+            
+            // 입력값이 정답과 완전히 일치하면 스페이스바/엔터 없이 즉시 통과!
+            if (normalizedInput === normalizedAnswer && normalizedInput.length > 0) {
+                submitTyping();
             }
         }
 

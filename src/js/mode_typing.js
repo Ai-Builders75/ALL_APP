@@ -1,20 +1,26 @@
 function handleTypingKeypress(e) {
-    if (e.key === 'Enter') {
+    // IME 조합 중이거나 모바일 키보드 버그(229)일 때는 Enter 무시
+    if (e.key === 'Enter' && !e.isComposing && e.keyCode !== 229) {
+        e.preventDefault();
         submitTyping();
-    } else if (e.key === ' ') {
-        if (currentBlankIndex >= blanks.length) return;
-        const inputEl = document.getElementById('typingInput');
-        const userInput = inputEl.value;
-        const currentBlank = blanks[currentBlankIndex];
-        const answer = currentBlank.getAttribute('data-answer');
-        const regexRemoveSpecial = /[^가-힣a-zA-Z0-9]/g;
-        const normalizedInput = userInput.normalize('NFC').replace(regexRemoveSpecial, '');
-        const normalizedAnswer = (synonyms[answer] || answer).normalize('NFC').replace(regexRemoveSpecial, '');
-        
-        if (normalizedInput === normalizedAnswer && normalizedInput.length > 0) {
-            e.preventDefault();
-            submitTyping();
-        }
+    }
+}
+
+function handleTypingInput(e) {
+    if (currentBlankIndex >= blanks.length) return;
+    const inputEl = document.getElementById('typingInput');
+    const userInput = inputEl.value;
+    
+    if (!userInput.trim()) return;
+    
+    const currentBlank = blanks[currentBlankIndex];
+    const answer = currentBlank.getAttribute('data-answer');
+    const regexRemoveSpecial = /[^가-힣a-zA-Z0-9]/g;
+    const normalizedInput = userInput.normalize('NFC').replace(regexRemoveSpecial, '');
+    const normalizedAnswer = (synonyms[answer] || answer).normalize('NFC').replace(regexRemoveSpecial, '');
+    
+    if (normalizedInput === normalizedAnswer && normalizedInput.length > 0) {
+        submitTyping();
     }
 }
 
