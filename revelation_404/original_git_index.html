@@ -1,0 +1,2013 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 핵심 키워드</title>
+    
+    <!-- PWA 지원 (홈 화면 추가) -->
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#1e293b">
+    <link rel="apple-touch-icon" href="./icon-192x192.png">
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7902247777992049" crossorigin="anonymous"></script>
+    
+    <!-- 인앱 브라우저(카카오톡 등) 차단 및 외부 브라우저 유도 스크립트 -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var userAgent = navigator.userAgent.toLowerCase();
+            if (userAgent.match(/kakaotalk/i) || userAgent.match(/line/i) || userAgent.match(/inapp/i) || userAgent.match(/naver/i) || userAgent.match(/snapchat/i) || userAgent.match(/everytime/i) || userAgent.match(/instagram/i) || userAgent.match(/facebook/i)) {
+                // 카카오톡 등 인앱 브라우저인 경우 모달을 띄워 기본 브라우저로 열도록 안내
+                var inappModal = document.createElement('div');
+                inappModal.style.position = 'fixed';
+                inappModal.style.top = '0';
+                inappModal.style.left = '0';
+                inappModal.style.width = '100vw';
+                inappModal.style.height = '100vh';
+                inappModal.style.backgroundColor = '#1e293b';
+                inappModal.style.color = 'white';
+                inappModal.style.zIndex = '999999';
+                inappModal.style.display = 'flex';
+                inappModal.style.flexDirection = 'column';
+                inappModal.style.alignItems = 'center';
+                inappModal.style.justifyContent = 'center';
+                inappModal.style.padding = '30px';
+                inappModal.style.textAlign = 'center';
+                
+                inappModal.innerHTML = `
+                    <div style="font-size: 4rem; margin-bottom: 20px;">🚨</div>
+                    <h2 style="font-size: 1.5rem; margin-bottom: 20px; word-break: keep-all; line-height: 1.4;">현재 카카오톡(또는 앱 내장 브라우저)으로 접속하셨습니다.</h2>
+                    <p style="font-size: 1.1rem; color: #94a3b8; margin-bottom: 40px; word-break: keep-all; line-height: 1.5;">앱 자동 설치를 위해서는 구글 크롬이나 사파리 같은 기본 인터넷 브라우저로 접속해야 합니다.</p>
+                    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.2); width: 100%;">
+                        <p style="font-size: 1.1rem; font-weight: bold; margin-bottom: 10px;">👇 이렇게 해주세요 👇</p>
+                        <p style="font-size: 1.1rem; margin-bottom: 10px;">화면 우측 하단(또는 상단)의 <b>[점 3개 ⋮]</b> 버튼을 누르고</p>
+                        <p style="font-size: 1.2rem; font-weight: bold; color: #3b82f6;">[다른 브라우저로 열기]</p>
+                        <p style="font-size: 1.1rem; margin-top: 10px;">를 선택해주세요!</p>
+                    </div>
+                `;
+                document.body.appendChild(inappModal);
+            }
+        });
+    </script>
+
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: rgba(18, 25, 43, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #3b82f6;
+            --primary-hover: #60a5fa;
+            --primary-glow: rgba(59, 130, 246, 0.5);
+            --success: #10b981;
+            --success-glow: rgba(16, 185, 129, 0.4);
+            --error: #ef4444;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --verse-font-size: 1.15rem;
+            --body-bg-gradient: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #0b0f19 70%, #000000 100%);
+            --orb-1-bg: rgba(59, 130, 246, 0.15);
+            --orb-2-bg: rgba(139, 92, 246, 0.15);
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f1f5f9;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(0, 0, 0, 0.1);
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-glow: rgba(37, 99, 235, 0.3);
+            --success: #059669;
+            --success-glow: rgba(5, 150, 105, 0.3);
+            --error: #dc2626;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --body-bg-gradient: radial-gradient(circle at 50% 0%, #e2e8f0 0%, #f8fafc 70%, #ffffff 100%);
+            --orb-1-bg: rgba(37, 99, 235, 0.1);
+            --orb-2-bg: rgba(147, 51, 234, 0.1);
+        }
+
+        [data-theme="green"] {
+            --bg-color: #064e3b;
+            --card-bg: rgba(6, 78, 59, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --primary: #10b981;
+            --primary-hover: #34d399;
+            --primary-glow: rgba(16, 185, 129, 0.5);
+            --success: #3b82f6;
+            --success-glow: rgba(59, 130, 246, 0.4);
+            --error: #ef4444;
+            --text-main: #ecfdf5;
+            --text-muted: #a7f3d0;
+            --body-bg-gradient: radial-gradient(circle at 50% 0%, #065f46 0%, #022c22 70%, #000000 100%);
+            --orb-1-bg: rgba(16, 185, 129, 0.15);
+            --orb-2-bg: rgba(59, 130, 246, 0.15);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Pretendard', sans-serif;
+            background: var(--body-bg-gradient);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        /* Animated Background Orbs */
+        body::before, body::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            animation: float 20s infinite alternate ease-in-out;
+            transition: background 0.5s ease;
+        }
+        body::before {
+            background: var(--orb-1-bg);
+            top: -10%; left: -10%;
+        }
+        body::after {
+            background: var(--orb-2-bg);
+            bottom: -10%; right: -10%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 50px) scale(1.2); }
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 500px;
+            height: 100vh;
+            height: 100dvh; /* 모바일 브라우저 주소창 높이 자동 대응 */
+            background: var(--card-bg);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--glass-border);
+            border-radius: 32px;
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            padding-bottom: 70px; /* 하단 배너 공간 확보 (AdSense) */
+        }
+
+        /* AdSense Container */
+        .ad-container-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px; /* Fixed height to prevent CLS */
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+
+        .header {
+            padding: 12px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid var(--glass-border);
+            background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
+        }
+
+
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .logo-main {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(96, 165, 250, 0.2);
+        }
+
+        .logo-sub {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            margin-top: 4px;
+            margin-right: -3px; /* 자간(letter-spacing) 때문에 우측으로 쏠려보이는 현상 교정 */
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        select, .nav-btn {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 8px 14px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            outline: none;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        select:hover, .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-1px);
+        }
+
+        select option {
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+
+        .level-select {
+            background: rgba(16, 185, 129, 0.1);
+            color: #34d399;
+            border-color: rgba(16, 185, 129, 0.2);
+        }
+
+        .incorrect-btn {
+            background: rgba(239, 68, 68, 0.1);
+            color: #f87171;
+            border-color: rgba(239, 68, 68, 0.2);
+        }
+        .incorrect-btn.active {
+            background: #ef4444;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+            border-color: #ef4444;
+        }
+
+        .content {
+            flex: 1;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-y: auto;
+        }
+
+        .content::-webkit-scrollbar {
+            width: 6px;
+        }
+        .content::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        /* Ad Banner Container */
+        .ad-banner-container {
+            width: 100%;
+            height: 50px; /* 구글 애드몹 표준 모바일 배너 높이 */
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 40; /* 키보드나 모달 아래에 배치 */
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            width: 100%;
+        }
+
+        .verse-box {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+            padding: 24px;
+            border-radius: 20px;
+            font-size: var(--verse-font-size);
+            line-height: 1.8;
+            margin-bottom: 24px;
+            border: 1px solid var(--glass-border);
+            box-shadow: inset 0 2px 20px rgba(0,0,0,0.2);
+            word-break: keep-all;
+        }
+
+        .blank {
+            display: inline-block;
+            min-width: 50px;
+            padding: 0 8px;
+            height: 32px;
+            line-height: 32px;
+            border-bottom: 2px dashed rgba(255,255,255,0.3);
+            margin: 0 4px;
+            text-align: center;
+            color: #fff;
+            font-weight: 700;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            vertical-align: bottom;
+        }
+
+        .blank.active {
+            border-bottom: 2px solid var(--primary);
+            background: rgba(59, 130, 246, 0.15);
+            border-radius: 6px 6px 0 0;
+            box-shadow: inset 0 -10px 15px -10px var(--primary-glow);
+        }
+
+        .blank.filled {
+            border-bottom: 2px solid var(--success);
+            color: var(--success);
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .blank.error {
+            border-bottom: 2px solid var(--error);
+            color: var(--error);
+            animation: shake 0.5s;
+        }
+
+        /* Premium Hint Box */
+        .premium-hint-box {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(147, 197, 253, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            text-align: center;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25), inset 0 0 20px rgba(147, 197, 253, 0.05);
+            animation: slideDownFade 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: none;
+        }
+
+        .home-subtitle {
+            color: #cbd5e1;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 1.05rem;
+        }
+        
+        @keyframes slideDownFade {
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hint-badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .hint-text {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+            margin-bottom: 12px;
+            font-family: 'Pretendard', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .hint-subtext {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Keyboard */
+        .keyboard {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            width: 100%;
+            margin-top: auto;
+            padding: 24px;
+            box-sizing: border-box;
+            background: rgba(11, 15, 25, 0.6);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .typing-container {
+            width: 100%;
+            margin-top: auto;
+            padding: 24px;
+            box-sizing: border-box;
+            background: rgba(11, 15, 25, 0.6);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--glass-border);
+            display: flex;
+            gap: 12px;
+        }
+
+        .typing-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            color: #fff;
+            padding: 16px;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            outline: none;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .typing-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 15px var(--primary-glow);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .typing-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            padding: 0 24px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .typing-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .hint-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 0 16px;
+            font-size: 1.4rem;
+        }
+        
+        .hint-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .error-shake {
+            animation: shake 0.5s;
+            border-color: var(--error) !important;
+            color: var(--error) !important;
+        }
+
+        .key {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: #fff;
+            padding: 12px 4px;
+            border-radius: 14px;
+            font-size: clamp(0.85rem, calc(var(--verse-font-size) * 0.45 + 0.4rem), 1.2rem); /* 글자가 아무리 커져도 레이아웃 파괴 방지 */
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: inherit;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            word-break: keep-all;
+            line-height: 1.2;
+        }
+        .key:hover {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .key:active {
+            background: var(--primary);
+            border-color: var(--primary-hover);
+            transform: translateY(1px);
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            width: 0%;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+        }
+
+        /* Grid Modal */
+        .grid-modal {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            display: none;
+            flex-direction: column;
+            z-index: 50;
+            padding: 24px;
+            box-sizing: border-box;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .grid-modal.show { 
+            display: flex; 
+            opacity: 1;
+        }
+        .grid-header {
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .grid-header h2 { color: #fff; margin: 0; font-size: 1.3rem; font-weight: 800; }
+        .close-btn { background: none; border: none; color: var(--text-muted); font-size: 2.5rem; cursor: pointer; padding: 0; line-height: 0.8; transition: color 0.2s; }
+        .close-btn:hover { color: #fff; }
+        
+        .verse-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            overflow-y: auto;
+            padding-bottom: 20px;
+        }
+        
+        .verse-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            color: #fff;
+            padding: 16px 8px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+            font-family: inherit;
+        }
+        
+        .verse-btn:hover { 
+            background: rgba(255, 255, 255, 0.1); 
+            transform: scale(1.05);
+        }
+        .verse-btn.cleared {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: rgba(16, 185, 129, 0.4);
+            color: #34d399;
+            box-shadow: inset 0 0 15px rgba(16, 185, 129, 0.1);
+        }
+
+        /* Animations */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-6px); }
+            40% { transform: translateX(6px); }
+            60% { transform: translateX(-4px); }
+            80% { transform: translateX(4px); }
+        }
+
+        @keyframes confetti {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+        }
+
+        .success-modal {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(15px);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .success-modal.show { 
+            display: flex; 
+            opacity: 1;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .success-modal h2 { 
+            font-size: 2.2rem; 
+            color: #fff; 
+            margin-bottom: 8px;
+            text-shadow: 0 0 20px rgba(255,255,255,0.3);
+        }
+        .success-modal p { color: var(--text-muted); font-size: 1.1rem; }
+        
+        .next-btn {
+            padding: 16px 32px;
+            background: linear-gradient(135deg, var(--primary), #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-size: 1.15rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .next-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.6);
+        }
+
+        /* Auto Advance Overlay */
+        .auto-advance-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 40px;
+            font-size: 1.8rem;
+            font-weight: 900;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 100;
+            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.4);
+            letter-spacing: 2px;
+        }
+        .auto-advance-overlay.show {
+            opacity: 1;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes popIn {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+            70% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        /* Home Screen Styles */
+        #homeScreen {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .home-content {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            backdrop-filter: blur(20px);
+        }
+        .home-logo {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin: 0;
+            color: var(--primary);
+            text-shadow: 0 0 20px var(--primary-glow);
+            line-height: 1.1;
+        }
+        .home-logo-sub {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            margin-bottom: 5px;
+            display: block;
+        }
+        #homeScreen {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow-y: auto; /* 모바일 긴 화면 스크롤 허용 */
+        }
+        .home-content {
+            padding: 20px; /* 좁은 모바일 화면 대응 패딩 축소 */
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .home-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+            word-break: keep-all;
+            line-height: 1.4;
+        }
+        .home-select-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .home-select-wrapper {
+            position: relative;
+            text-align: left;
+        }
+        .home-select-wrapper label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+            display: block;
+            margin-left: 5px;
+        }
+        .home-select {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            padding: 14px 16px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            outline: none;
+            cursor: pointer;
+            font-family: inherit;
+            width: 100%;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+        [data-theme="light"] .home-select { background: rgba(255, 255, 255, 0.5); }
+        .start-btn {
+            background: linear-gradient(135deg, var(--primary), #8b5cf6);
+            color: white;
+            border: none;
+            padding: 18px 0;
+            width: 100%;
+            border-radius: 14px;
+            font-size: 1.25rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4);
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        .start-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.6);
+        }
+        .settings-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            width: 44px; height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        .settings-icon:hover {
+            background: rgba(255,255,255,0.15);
+            transform: rotate(90deg);
+        }
+        [data-theme="light"] .settings-icon {
+            color: var(--text-main);
+            border-color: var(--glass-border);
+            background: rgba(0,0,0,0.05);
+        }
+
+
+
+        /* Settings Modal Styles */
+        #settingsModal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+            z-index: 200;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        .settings-content {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            padding: 30px;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 350px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            animation: popIn 0.3s ease-out;
+            color: var(--text-main);
+        }
+        .settings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        .settings-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin: 0;
+        }
+        .close-settings {
+            background: none; border: none; color: var(--text-muted);
+            font-size: 1.8rem; cursor: pointer; padding: 0; line-height: 1;
+        }
+        .setting-item {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        .setting-label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            display: block;
+        }
+        .theme-options {
+            display: flex;
+            gap: 10px;
+        }
+        .theme-btn {
+            flex: 1;
+            padding: 12px 0;
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            background: rgba(255,255,255,0.05);
+            color: var(--text-main);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .theme-btn.active {
+            border-color: var(--primary);
+            background: var(--primary-glow);
+            box-shadow: 0 0 10px var(--primary-glow);
+        }
+        [data-theme="light"] .theme-btn { background: rgba(0,0,0,0.05); }
+        [data-theme="light"] .theme-btn.active { background: var(--primary-glow); }
+        .font-size-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(0,0,0,0.2);
+            padding: 10px;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+        }
+        [data-theme="light"] .font-size-controls { background: rgba(255,255,255,0.5); }
+        .font-size-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            width: 44px; height: 44px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
+        }
+        .font-size-btn:active { background: rgba(255,255,255,0.2); transform: scale(0.95); }
+        [data-theme="light"] .font-size-btn { background: rgba(0,0,0,0.05); }
+        .font-size-display {
+            flex: 1; text-align: center; font-size: 1.1rem; font-weight: 700; color: var(--text-main);
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 480px) {
+            .app-container {
+                border-radius: 0;
+                border: none;
+                max-width: 100vw;
+            }
+            .header {
+                flex-direction: column;
+                gap: 12px;
+                padding: 16px;
+            }
+            .header-controls {
+                flex-wrap: wrap;
+                justify-content: center;
+                width: 100%;
+            }
+            .content {
+                padding: 16px;
+            }
+            .verse-box {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Home Screen -->
+    <div id="homeScreen">
+        <div class="home-content">
+            <div class="home-logo-container" style="margin-bottom: 30px; text-align: center; position: relative;">
+                <div class="home-logo-sub" style="margin-bottom: 5px;">핵심 키워드</div>
+                <div style="display: flex; align-items: center; justify-content: center; font-size: 5rem; font-weight: 900; line-height: 1;">
+                    <span style="background: linear-gradient(135deg, var(--primary), #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 4.5rem; margin-right: -5px;">4</span>
+                    <img src="assets/cute_seed_transparent.png" alt="귀여운 새싹" style="width: 130px; height: 130px; margin: 0; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.3)); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer;" onmouseover="this.style.transform='translateY(-10px) scale(1.05) rotate(5deg)'" onmouseout="this.style.transform='translateY(0px) scale(1) rotate(0deg)'">
+                    <span style="background: linear-gradient(135deg, var(--primary), #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 4.5rem; margin-left: -5px;">4</span>
+                </div>
+            </div>
+            <p class="home-subtitle">완벽한 암기를 위한 당신만의 집중 공간</p>
+            
+            <div class="home-select-group">
+                <div class="home-select-wrapper">
+                    <label for="chapterSelect">학습할 장 선택</label>
+                    <select id="chapterSelect" class="home-select" onchange="onChapterSelect(this.value)">
+                        <!-- Populated by JS -->
+                    </select>
+                </div>
+                <div class="home-select-wrapper">
+                    <label for="levelSelect">난이도 선택</label>
+                    <select id="levelSelect" class="home-select" onchange="changeLevel(this.value)">
+                        <option value="1">1단계 (핵심)</option>
+                        <option value="2">2단계 (확장)</option>
+                        <option value="3">3단계 (심화)</option>
+                        <option value="4">4단계 (마스터)</option>
+                        <option value="5">5단계 (완전암기)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: 10px; margin-top: 15px;">
+                <button class="start-btn" onclick="startLearning()" style="flex: 2; margin-top: 0;">🚀 학습 시작하기</button>
+                <button onclick="openSettings()" style="flex: 1; padding: 15px; border-radius: 12px; background: rgba(0,0,0,0.05); color: inherit; font-weight: 800; font-size: 1rem; border: 2px solid rgba(0,0,0,0.1); cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 5px;">⚙️ 설정</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal">
+        <div class="settings-content">
+            <div class="settings-header">
+                <h2 class="settings-title">⚙️ 환경 설정</h2>
+                <button class="close-settings" onclick="closeSettings()">&times;</button>
+            </div>
+            
+            <div class="setting-item">
+                <span class="setting-label">화면 테마 (색상)</span>
+                <div class="theme-options">
+                    <button class="theme-btn active" data-theme-val="dark" onclick="applyTheme('dark')">🌌 우주</button>
+                    <button class="theme-btn" data-theme-val="green" onclick="applyTheme('green')">🌿 그린</button>
+                    <button class="theme-btn" data-theme-val="light" onclick="applyTheme('light')">☀️ 라이트</button>
+                </div>
+            </div>
+
+            <div class="setting-item">
+                <span class="setting-label">글자 크기 조절</span>
+                <div class="font-size-controls">
+                    <button class="font-size-btn" onclick="changeFontSize(-0.1)">-</button>
+                    <div class="font-size-display" id="fontSizeDisplay">기본</div>
+                    <button class="font-size-btn" onclick="changeFontSize(0.1)">+</button>
+                </div>
+            </div>
+
+            <div class="setting-item" style="margin-top: 10px;">
+                <span class="setting-label">의견 제안 및 오류 제보</span>
+                <a href="https://t.me/petter_404" target="_blank" style="display: block; text-decoration: none;">
+                    <button style="width: 100%; padding: 12px; border-radius: 12px; background: #229ED9; color: white; font-weight: 800; font-size: 1rem; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                        <span style="font-size: 1.2rem;">✈️</span> 텔레그램으로 제안하기
+                    </button>
+                </a>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 8px; text-align: center; word-break: keep-all;">학습 중 불편한 점이나 추가되었으면 하는 기능을 편하게 남겨주세요.</p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Main App Container (Hidden initially) -->
+    <div class="app-container" id="appContainer" style="display: none; opacity: 0; transform: scale(0.95); transition: all 0.5s ease;">
+        <div class="header">
+            <div class="header-controls">
+                <button class="nav-btn" style="background: rgba(255,255,255,0.05); padding: 8px 12px;" onclick="goHome()">🏠 홈</button>
+                <button id="incorrectModeBtn" class="nav-btn incorrect-btn" onclick="toggleIncorrectMode()">오답복습</button>
+                <button class="nav-btn" onclick="showVerseGrid()">절 표</button>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <div class="quiz-section">
+                <!-- font size buttons removed to clean up UI -->
+                <div class="verse-box" id="verseBox">
+                    <!-- Dynamic Verse Content -->
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 20px; gap: 12px;">
+                    <button class="nav-btn" onclick="prevStage()" style="flex: 1; padding: 12px; font-size: 0.95rem;">◀ 이전 구절</button>
+                    <button class="nav-btn" onclick="nextStage()" style="flex: 1; padding: 12px; font-size: 0.95rem;">다음 구절 ▶</button>
+                </div>
+                
+                <!-- Premium Hint UI -->
+                <div id="premiumHintBox" class="premium-hint-box">
+                    <div class="hint-badge" id="hintBadge">💡 1단계 힌트</div>
+                    <div class="hint-text" id="hintText">예 O O</div>
+                    <div class="hint-subtext" id="hintSubtext">한 번 더 누르면 전체 초성이 공개됩니다.</div>
+                </div>
+
+                <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem;">아래 보기에서 알맞은 키워드를 선택하여 빈칸을 채우세요.</p>
+            </div>
+        </div>
+
+        <div class="keyboard" id="keyboard">
+            <!-- Keys populated by JS -->
+        </div>
+
+        <div class="typing-container" id="typingContainer" style="display: none;">
+            <button class="typing-btn hint-btn" onclick="showChoseongHint()" id="hintBtn" title="초성 힌트 보기">💡</button>
+            <input type="text" id="typingInput" class="typing-input" placeholder="정답을 직접 입력하세요" onkeypress="handleTypingKeypress(event)" autocomplete="off">
+            <button class="typing-btn" onclick="submitTyping()">확인</button>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <!-- Success Modal (Hidden, using Auto Advance instead) -->
+        <div class="success-modal" id="successModal">
+            <h2 id="successTitle">🎉 STAGE CLEAR!</h2>
+            <p id="successDesc">핵심 키워드를 완벽히 암기했습니다!</p>
+            <button class="next-btn" onclick="nextStage()">다음 문제로</button>
+            <button class="next-btn" style="background:#475569; margin-top:10px;" onclick="showVerseGrid()">절 표 보기</button>
+        </div>
+
+        <!-- Chapter End Modal -->
+        <div class="success-modal" id="chapterEndModal">
+            <h2 id="chapterEndTitle">제 1 장 완료! 🎉</h2>
+            <p style="margin-bottom: 20px;">수고하셨습니다. 다음 학습을 선택해 주세요.</p>
+            <button class="next-btn" style="background:#3b82f6; width: 80%; max-width: 250px;" onclick="retryChapter()">🔄 이 장 다시 도전</button>
+            <button class="next-btn" id="nextChapterBtn" style="background:#10b981; width: 80%; max-width: 250px; margin-top: 10px;" onclick="goToNextChapter()">⏭ 다음 장으로</button>
+            <button class="next-btn" style="background:#ef4444; width: 80%; max-width: 250px; margin-top: 10px;" onclick="reviewChapterIncorrect()">📝 틀린 문제 복습</button>
+            <button class="next-btn" style="background:#0088cc; width: 80%; max-width: 250px; margin-top: 10px;" onclick="shareTelegram()">✈️ 텔레그램 인증하기</button>
+        </div>
+
+        <div class="auto-advance-overlay" id="autoAdvanceOverlay">통과! 👏</div>
+
+        <!-- Verse Grid Modal -->
+        <div class="grid-modal" id="gridModal">
+            <div class="grid-header">
+                <h2 id="gridTitle">제 1 장 절 선택</h2>
+                <button class="close-btn" onclick="closeVerseGrid()">×</button>
+            </div>
+            <div class="verse-grid" id="verseGrid">
+                <!-- Buttons populated by JS -->
+            </div>
+        </div>
+        
+        <!-- Bottom Banner Ad (AdSense) -->
+        <div class="ad-container-bottom">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:320px;height:50px"
+                 data-ad-client="ca-pub-7902247777992049"
+                 data-ad-slot="1234567890"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+
+    <script src="database.js"></script>
+    <script>
+        let currentStage = 1;
+        let currentChapter = 1;
+        let currentLevel = 1;
+        const totalStages = Object.keys(gameData).length;
+        let blanks = [];
+        let currentBlankIndex = 0;
+        let currentStageBlanks = [];
+        let hintState = 0; // 0: 없음, 1: 첫글자 힌트, 2: 초성 힌트
+
+        // 오답 관리
+        let incorrectStages = JSON.parse(localStorage.getItem('incorrectStages')) || [];
+        let isIncorrectMode = false;
+        let mistakesThisStage = 0;
+        
+        // 특수 예외 처리어 사전 (키워드 -> 성경 본문 내의 실제 텍스트)
+        const synonyms = {
+    "밧모섬": "밧모라",
+    "사망 음부": "사망과 음부",
+    "침상,": "침상",
+    "새벽별": "새벽",
+    "흰옷": "흰",
+    "문 밖": "문밖",
+    "이십사": "이십 사",
+    "유리바다": "유리 바다가",
+    "일곱뿔": "일곱",
+    "일곱눈": "일곱",
+    "책을 취함": "책을 취하시니라",
+    "새노래": "새 노래를",
+    "만만 천천": "만만이요 천천",
+    "붉은 말": "붉은 다른 말",
+    "셋째 인": "세째 인을",
+    "밀 한 되": "밀 한되",
+    "보리 석 되": "보리 석되",
+    "넷째 인": "네째 인을",
+    "피의 신원": "피를 신원하여",
+    "흰두루마기": "흰 두루마기를",
+    "해, 달": "해가 총담 같이 검어지고 온 달",
+    "굴, 산": "굴과 산",
+    "어린양의": "어린 양의",
+    "인 맞은": "인맞은",
+    "스블론": "스불론",
+    "흰 옷 입은": "흰옷 입은",
+    "나팔 예비": "나팔 가진 일곱 천사가 나팔 불기를 예비",
+    "첫째 나팔": "첫째 천사가 나팔",
+    "둘째 나팔": "둘째 천사가 나팔",
+    "셋째 나팔": "세째 천사가 나팔을",
+    "물 샘": "물샘",
+    "넷째 나팔": "네째 천사가 나팔을",
+    "다섯째 나팔": "다섯째 천사가 나팔",
+    "무저갱의열쇠": "무저갱의 열쇠를",
+    "다섯 달": "다섯달",
+    "살인 복술": "살인과 복술",
+    "백, 나": "백성과 나",
+    "방, 임": "방언과 임",
+    "원수 소멸": "원수를 소멸",
+    "구원, 능력": "구원과 능력",
+    "어린양의 피": "어린 양의 피와",
+    "강같이 토함": "강 같이 토하여",
+    "바다 짐승": "바다에서 한 짐승",
+    "싸워 이김": "싸워 이기게",
+    "땅 짐승": "다른 짐승이",
+    "내려옴": "내려",
+    "둘째 천사": "다른 천사",
+    "셋째 천사": "다른 천사",
+    "얻지 못함": "얻지 못하리라",
+    "곡식 거둠": "곡식이 거두어지니라",
+    "어린양의 노래": "어린 양의 노래를",
+    "와서 경배": "와서 주께 경배",
+    "증거장막": "증거 장막의",
+    "가진 천사": "가진 일곱 천사",
+    "금 대접": "금대접",
+    "첫째 대접": "첫째가 가서 그 대접",
+    "둘째 대접": "둘째가 그 대접",
+    "셋째 대접": "그 대접을",
+    "피를 마심": "피를 마시게",
+    "참되고": "참되시고",
+    "넷째 대접": "그 대접을",
+    "다섯째 대접": "다섯째가 그 대접",
+    "짐승 보좌": "짐승의 보좌",
+    "여섯째 대접": "여섯째가 그 대접",
+    "도적같이": "도적 같이",
+    "일곱째 대접": "일곱째가 그 대접",
+    "섬, 산악": "섬도 없어지고 산악",
+    "피에 취함": "피에 취한지라",
+    "미워함": "미워하여",
+    "24장로": "장로와",
+    "백마 탄 자": "백마와 탄 자",
+    "산 채로": "산채로",
+    "유황 불붙는": "유황불 붙는",
+    "못에 던짐": "못에 던지우고",
+    "잠간 놓임": "잠간 놓이리라",
+    "천 년 동안": "천년 동안",
+    "왕 노릇": "왕노릇",
+    "천 년이": "천년이",
+    "기록된 대로": "기록된대로",
+    "다 지나감": "다시 있지",
+    "열두 문": "열 두 문이",
+    "열두": "열 두",
+    "장, 광, 고": "장과 광과 고",
+    "쓸데 없음": "쓸데 없으니",
+    "생명나무": "생명 나무가",
+    "저주 없음": "저주가 없으며",
+    "은혜, 아멘": "은혜가 모든 자들에게 있을찌어다 아멘"
+};
+        
+        // Initialize Chapter Dropdown
+        const chapterSelect = document.getElementById('chapterSelect');
+        for(let i=1; i<=22; i++) {
+            const opt = document.createElement('option');
+            opt.value = i;
+            opt.textContent = `제 ${i} 장`;
+            chapterSelect.appendChild(opt);
+        }
+
+        function onChapterSelect(chapterStr) {
+            currentChapter = parseInt(chapterStr);
+            showVerseGrid(); // Show grid instead of jumping to first verse
+        }
+
+        function changeLevel(levelStr) {
+            currentLevel = parseInt(levelStr);
+            loadStage(currentStage); // reload current stage with new level
+        }
+
+        function getExtraKeywords(verseText, coreKeywords, count, isLevel5 = false) {
+            let words = verseText.replace(/[.,!?]/g, '').split(' ');
+            
+            if (isLevel5) {
+                return words.filter(w => w.length > 0 && !coreKeywords.some(ck => w.includes(ck) || ck.includes(w)));
+            }
+
+            // 성경에서 자주 쓰이는 서술어, 조사, 대명사, 부사 등 (핵심 빈칸으로 덜 중요한 단어들)
+            const stopWords = [
+                '있어', '하는', '하여', '가라사대', '하시더라', '하느니라', '하니', '가로되', 
+                '하고', '하며', '이는', '내가', '네가', '그가', '너희가', '또', '곧', '이제',
+                '전에도', '장차', '나를', '너를', '그를', '나의', '너의', '그의', '내', '네',
+                '이', '저', '그', '요한은', '가서', '오직', '이러므로', '또한', '만일'
+            ];
+            
+            const stopEndings = ['더라', '노라', '찌어다', '나니', '느니라', '느니', '리라', '리니', '도다', '어다', '사대', '어니와', '시며', '거늘', '거든', '으니', '므로', '나이다'];
+
+            let filteredWords = words.filter(w => {
+                if (w.length <= 1) return false;
+                if (coreKeywords.some(ck => w.includes(ck) || ck.includes(w))) return false;
+                
+                // 불용어 및 서술어 어미 필터링
+                if (stopWords.includes(w)) return false;
+                if (stopEndings.some(ending => w.endsWith(ending))) return false;
+                
+                return true;
+            });
+            
+            // 필터링 후 남은 단어가 요구하는 count보다 적을 경우, 긴 단어 위주로 백업 추가
+            if (filteredWords.length < count) {
+                let fallbackWords = words.filter(w => 
+                    w.length > 1 && 
+                    !coreKeywords.some(ck => w.includes(ck) || ck.includes(w)) && 
+                    !filteredWords.includes(w)
+                ).sort((a,b) => b.length - a.length); // 긴 단어 우선순위
+                
+                filteredWords = filteredWords.concat(fallbackWords.slice(0, count - filteredWords.length));
+            }
+
+            filteredWords.sort(() => 0.5 - Math.random());
+            return filteredWords.slice(0, count);
+        }
+
+        function generateVerseHTML(verseText, coreKeywords) {
+            let htmlText = verseText;
+            let missingKeywords = [];
+            
+            // Determine target keywords based on level
+            let targetKeywords = [...coreKeywords];
+            
+            if (currentLevel === 2) {
+                targetKeywords = targetKeywords.concat(getExtraKeywords(verseText, coreKeywords, 2));
+            } else if (currentLevel === 3) {
+                targetKeywords = targetKeywords.concat(getExtraKeywords(verseText, coreKeywords, 5));
+            } else if (currentLevel === 4) {
+                let allWords = verseText.replace(/[.,!?]/g, '').split(' ').filter(w => w.length > 1);
+                let count = Math.floor(allWords.length * 0.5);
+                targetKeywords = targetKeywords.concat(getExtraKeywords(verseText, coreKeywords, count));
+            } else if (currentLevel === 5) {
+                let allWords = verseText.replace(/[.,!?]/g, '').split(' ').filter(w => w.length > 0);
+                targetKeywords = targetKeywords.concat(getExtraKeywords(verseText, coreKeywords, allWords.length, true));
+            }
+            
+            // Sort target keywords by length descending so longer words get replaced first
+            targetKeywords.sort((a, b) => b.length - a.length);
+
+            currentStageBlanks = [];
+            
+            targetKeywords.forEach((kw, i) => {
+                let searchWord = synonyms[kw];
+                if (!searchWord) {
+                    let cleanKw = kw.replace(/[.,!?]/g, '').trim();
+                    searchWord = cleanKw.split(' ').join('[^<>]*?');
+                }
+                
+                // Regex to avoid replacing inside HTML tags
+                let regex = new RegExp(`(?<!<[^>]*)${searchWord}(?![^<]*>)`, 'i');
+                if (regex.test(htmlText)) {
+                    htmlText = htmlText.replace(regex, `<span class="blank" data-answer="${kw}" id="blank${i}"></span>`);
+                    currentStageBlanks.push(kw);
+                } else {
+                    if (coreKeywords.includes(kw)) {
+                        missingKeywords.push({ kw, index: i });
+                    }
+                }
+            });
+
+            if (missingKeywords.length > 0) {
+                htmlText += `<div style="margin-top:15px; padding-top:15px; border-top:1px dashed rgba(255,255,255,0.2);">
+                    <div style="font-size:0.85em; color:var(--primary); margin-bottom:10px;">✚ 누락된 핵심 키워드 추가</div>`;
+                missingKeywords.forEach(mk => {
+                    htmlText += `<span class="blank" data-answer="${mk.kw}" id="blank${mk.index}"></span> `;
+                    currentStageBlanks.push(mk.kw);
+                });
+                htmlText += `</div>`;
+            }
+
+            return htmlText;
+        }
+
+        function loadStage(stageNumber) {
+            const data = gameData[stageNumber];
+            if (!data) return;
+            
+            mistakesThisStage = 0; // Reset mistakes
+            currentChapter = data.chapter;
+            chapterSelect.value = data.chapter;
+
+
+            
+            // Generate HTML with dynamic level blanks
+            let stageDesc = isIncorrectMode ? `<span style="color:#ef4444;">[오답복습]</span> ${data.verseRef}` : `${data.verseRef} (전체 404구절 중 ${stageNumber}번째)`;
+            document.getElementById('verseBox').innerHTML = `<div style="font-size:0.75em; color:#60a5fa; margin-bottom:12px; font-weight:bold;">${stageDesc}</div>` + generateVerseHTML(data.verseText, data.keywords);
+            
+            blanks = Array.from(document.querySelectorAll('.blank'));
+            currentBlankIndex = 0;
+            hidePremiumHint(); // 스테이지 변경 시 힌트 상태 초기화
+            if (blanks.length > 0) {
+                blanks[currentBlankIndex].classList.add('active');
+            } else {
+                handleStageClear();
+            }
+            
+            // Build keyboard words - exact blanks + distractors
+            let keyboardWords = [...currentStageBlanks];
+            
+            // 모든 스테이지의 키워드를 모아서 오답 보기(Distractors) 생성
+            let allKeywords = [];
+            Object.values(gameData).forEach(d => {
+                if(d.keywords) allKeywords.push(...d.keywords);
+            });
+            // 중복 제거 및 현재 정답 제외
+            allKeywords = [...new Set(allKeywords)].filter(k => !keyboardWords.includes(k));
+            allKeywords.sort(() => 0.5 - Math.random());
+            
+            // 키보드 버튼 개수를 4의 배수로 맞춤 (최소 8개)
+            let targetKeyCount = Math.max(8, Math.ceil(keyboardWords.length / 4) * 4);
+            
+            while(keyboardWords.length < targetKeyCount && allKeywords.length > 0) {
+                keyboardWords.push(allKeywords.pop());
+            }
+            
+            if (currentLevel >= 4) {
+                document.getElementById('keyboard').style.display = 'none';
+                document.getElementById('typingContainer').style.display = 'flex';
+                document.getElementById('typingInput').value = '';
+                document.getElementById('typingInput').placeholder = '정답을 직접 입력하세요';
+                document.getElementById('typingInput').focus();
+            } else {
+                document.getElementById('keyboard').style.display = 'grid';
+                document.getElementById('typingContainer').style.display = 'none';
+                renderKeyboard(keyboardWords);
+            }
+            updateProgress();
+            
+            document.getElementById('successModal').classList.remove('show');
+            document.querySelectorAll('.confetti-piece').forEach(el => el.remove());
+        }
+
+        function renderKeyboard(keywords) {
+            const kb = document.getElementById('keyboard');
+            kb.innerHTML = '';
+            const shuffled = [...keywords].sort(() => 0.5 - Math.random());
+            shuffled.forEach(word => {
+                const btn = document.createElement('button');
+                btn.className = 'key';
+                btn.textContent = word;
+                btn.onclick = () => handleInput(word);
+                kb.appendChild(btn);
+            });
+        }
+
+        function handleTypingKeypress(e) {
+            if (e.key === 'Enter') {
+                submitTyping();
+            }
+        }
+
+        const CHOSEONG = ["ㄱ", "ㄲ", "ㄴ", "ㄷ", "ㄸ", "ㄹ", "ㅁ", "ㅂ", "ㅃ", "ㅅ", "ㅆ", "ㅇ", "ㅈ", "ㅉ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"];
+        function getChoseong(str) {
+            let result = "";
+            for (let i = 0; i < str.length; i++) {
+                let code = str.charCodeAt(i) - 44032;
+                if (code > -1 && code < 11172) {
+                    result += CHOSEONG[Math.floor(code / 588)];
+                } else {
+                    result += str.charAt(i);
+                }
+            }
+            return result;
+        }
+
+        function hidePremiumHint() {
+            document.getElementById('premiumHintBox').style.display = 'none';
+            document.getElementById('typingInput').placeholder = '정답을 직접 입력하세요';
+            hintState = 0;
+        }
+
+        function showChoseongHint() {
+            if (currentBlankIndex >= blanks.length) return;
+            const currentBlank = blanks[currentBlankIndex];
+            const answer = currentBlank.getAttribute('data-answer');
+            const inputEl = document.getElementById('typingInput');
+            
+            const hintBox = document.getElementById('premiumHintBox');
+            const hintBadge = document.getElementById('hintBadge');
+            const hintText = document.getElementById('hintText');
+            const hintSubtext = document.getElementById('hintSubtext');
+            
+            hintBox.style.display = 'block';
+            
+            if (hintState === 0) {
+                // 1단계 힌트: 첫 글자 + 나머지 O 표시
+                let firstChar = answer.charAt(0);
+                let rest = "";
+                for(let i=1; i<answer.length; i++) {
+                    rest += answer[i] === " " ? " " : "○";
+                }
+                
+                hintBadge.textContent = "💡 1단계 마중물 힌트";
+                hintBadge.style.color = "#93c5fd";
+                hintBadge.style.borderColor = "rgba(59, 130, 246, 0.4)";
+                hintBadge.style.background = "rgba(59, 130, 246, 0.15)";
+                
+                hintText.textContent = firstChar + rest;
+                hintText.style.letterSpacing = "16px";
+                hintSubtext.textContent = "전구를 한 번 더 누르면 전체 초성이 공개됩니다.";
+                
+                inputEl.placeholder = "정답을 입력하세요";
+                hintState = 1;
+            } else if (hintState === 1) {
+                // 2단계 힌트: 전체 초성
+                const hint = getChoseong(answer);
+                
+                hintBadge.textContent = "🔥 2단계 전체 초성 힌트";
+                hintBadge.style.color = "#fca5a5";
+                hintBadge.style.borderColor = "rgba(239, 68, 68, 0.4)";
+                hintBadge.style.background = "rgba(239, 68, 68, 0.15)";
+                
+                hintText.textContent = hint;
+                hintText.style.letterSpacing = "8px";
+                hintSubtext.innerHTML = "초성을 보고 유추해 보세요. <br><span style='color: #fbbf24; font-size: 0.85rem; font-weight: bold;'>💡 (한 번 더 누르면 정답이 노출되지만 오답 처리됩니다)</span>";
+                
+                hintState = 2;
+            } else {
+                // 3단계 힌트: 정답 노출 및 강제 오답 처리
+                hintBadge.textContent = "🚨 3단계 정답 공개";
+                hintBadge.style.color = "#fcd34d";
+                hintBadge.style.borderColor = "rgba(251, 191, 36, 0.4)";
+                hintBadge.style.background = "rgba(251, 191, 36, 0.15)";
+                
+                hintText.textContent = synonyms[answer] || answer;
+                hintText.style.letterSpacing = "4px";
+                hintSubtext.innerHTML = "<span style='color:#f87171; font-weight:bold;'>눈으로 보고 직접 타이핑하세요. (오답으로 자동 기록됨)</span>";
+                
+                mistakesThisStage++;
+                if (!incorrectStages.includes(currentStage)) {
+                    incorrectStages.push(currentStage);
+                    localStorage.setItem('incorrectStages', JSON.stringify(incorrectStages));
+                }
+                
+                hintState = 3;
+            }
+            
+            // 애니메이션 재시작
+            hintBox.style.animation = 'none';
+            hintBox.offsetHeight; /* trigger reflow */
+            hintBox.style.animation = 'slideDownFade 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            
+            inputEl.focus();
+        }
+
+        function submitTyping() {
+            if (currentBlankIndex >= blanks.length) return;
+            const inputEl = document.getElementById('typingInput');
+            let userInput = inputEl.value.trim();
+            if (!userInput) return;
+            
+            const currentBlank = blanks[currentBlankIndex];
+            const answer = currentBlank.getAttribute('data-answer');
+            
+            const normalizedInput = userInput.replace(/\s+/g, '');
+            const normalizedAnswer = (synonyms[answer] || answer).replace(/\s+/g, '');
+            
+            if (normalizedInput === normalizedAnswer || normalizedInput === answer.replace(/\s+/g, '')) {
+                currentBlank.textContent = synonyms[answer] || answer;
+                currentBlank.classList.remove('active');
+                currentBlank.classList.add('filled');
+                
+                currentBlankIndex++;
+                hidePremiumHint(); // 정답 맞추면 힌트 박스 닫기 및 초기화
+                updateProgress();
+                
+                inputEl.value = '';
+                inputEl.placeholder = '정답을 직접 입력하세요';
+                inputEl.focus();
+                
+                if (currentBlankIndex < blanks.length) {
+                    blanks[currentBlankIndex].classList.add('active');
+                } else {
+                    handleStageClear();
+                }
+            } else {
+                mistakesThisStage++;
+                if (!incorrectStages.includes(currentStage)) {
+                    incorrectStages.push(currentStage);
+                    localStorage.setItem('incorrectStages', JSON.stringify(incorrectStages));
+                }
+
+                currentBlank.textContent = userInput;
+                currentBlank.classList.add('error');
+                
+                inputEl.classList.add('error-shake');
+                setTimeout(() => inputEl.classList.remove('error-shake'), 500);
+
+                setTimeout(() => {
+                    currentBlank.textContent = '';
+                    currentBlank.classList.remove('error');
+                    inputEl.value = '';
+                    inputEl.focus();
+                }, 500);
+            }
+        }
+
+        function shareTelegram() {
+            const chapterMistakes = incorrectStages.filter(s => gameData[s].chapter === currentChapter).length;
+            const message = `🎉 [404 마스터] 제 ${currentChapter}장 (Level ${currentLevel}) 암기 학습 완료!\n\n${chapterMistakes === 0 ? "💯 오답 없이 완벽하게 통과했습니다!" : "💪 오답 노트까지 꼼꼼하게 복습했습니다!"}\n\n말씀으로 인맞는 그날까지 화이팅입니다!`;
+            const tgUrl = `tg://msg?text=${encodeURIComponent(message)}`;
+            window.location.href = tgUrl;
+        }
+
+        function handleInput(word) {
+            if (currentBlankIndex >= blanks.length) return;
+            
+            const currentBlank = blanks[currentBlankIndex];
+            const answer = currentBlank.getAttribute('data-answer');
+            
+            if (word === answer) {
+                currentBlank.textContent = synonyms[word] || word;
+                currentBlank.classList.remove('active');
+                currentBlank.classList.add('filled');
+                
+                currentBlankIndex++;
+                hidePremiumHint(); // 정답 맞추면 힌트 박스 닫기 및 초기화
+                updateProgress();
+                
+                if (currentBlankIndex < blanks.length) {
+                    blanks[currentBlankIndex].classList.add('active');
+                } else {
+                    handleStageClear();
+                }
+            } else {
+                mistakesThisStage++;
+                if (!incorrectStages.includes(currentStage)) {
+                    incorrectStages.push(currentStage);
+                    localStorage.setItem('incorrectStages', JSON.stringify(incorrectStages));
+                }
+
+                currentBlank.textContent = word;
+                currentBlank.classList.add('error');
+                setTimeout(() => {
+                    currentBlank.textContent = '';
+                    currentBlank.classList.remove('error');
+                }, 500);
+            }
+        }
+
+        function handleStageClear() {
+            // Stage cleared, save progress
+            localStorage.setItem(`cleared_${currentStage}_${currentLevel}`, "true");
+            
+            // Remove from incorrect list if cleared perfectly
+            if (mistakesThisStage === 0 && incorrectStages.includes(currentStage)) {
+                incorrectStages = incorrectStages.filter(s => s !== currentStage);
+                localStorage.setItem('incorrectStages', JSON.stringify(incorrectStages));
+            }
+
+            createConfetti();
+
+            if (isIncorrectMode) {
+                setTimeout(() => {
+                    nextStage();
+                }, 2200);
+                return;
+            }
+
+            // Normal mode
+            const nextData = gameData[currentStage + 1];
+            const isLastOfChapter = !nextData || nextData.chapter !== currentChapter;
+
+            if (isLastOfChapter) {
+                setTimeout(() => {
+                    showChapterEndModal();
+                }, 2200);
+            } else {
+                setTimeout(() => {
+                    nextStage();
+                }, 2200);
+            }
+        }
+
+        function updateProgress() {
+            if (blanks.length === 0) {
+                document.getElementById('progressFill').style.width = '100%';
+                return;
+            }
+            const progress = (currentBlankIndex / blanks.length) * 100;
+            document.getElementById('progressFill').style.width = `${progress}%`;
+        }
+
+        function showSuccess() {
+            const data = gameData[currentStage];
+            const modal = document.getElementById('successModal');
+            document.getElementById('successTitle').innerHTML = `🎉 STAGE ${currentStage} CLEAR!`;
+            document.getElementById('successDesc').textContent = `${data.verseRef} ${currentLevel}단계 암기 성공!`;
+            
+            const btn = modal.querySelector('.next-btn');
+            if (currentStage < totalStages) {
+                btn.style.display = "block";
+            } else {
+                btn.style.display = "none";
+                document.getElementById('successDesc').innerHTML += `<br><br><span style="color:var(--success); font-weight:bold;">축하합니다! 전체를 마스터했습니다!</span>`;
+            }
+
+            modal.classList.add('show');
+            createConfetti();
+        }
+        
+        function showChapterEndModal() {
+            document.getElementById('chapterEndTitle').innerText = `제 ${currentChapter} 장 완료! 🎉`;
+            const modal = document.getElementById('chapterEndModal');
+            
+            const nextBtn = document.getElementById('nextChapterBtn');
+            if (gameData[currentStage + 1]) {
+                nextBtn.style.display = 'block';
+            } else {
+                nextBtn.style.display = 'none';
+            }
+            
+            modal.classList.add('show');
+        }
+
+        function retryChapter() {
+            document.getElementById('chapterEndModal').classList.remove('show');
+            // Find first stage of current chapter
+            const firstStage = Object.values(gameData).find(d => d.chapter === currentChapter).stage;
+            currentStage = firstStage;
+            loadStage(currentStage);
+        }
+
+        function goToNextChapter() {
+            document.getElementById('chapterEndModal').classList.remove('show');
+            const nextData = gameData[currentStage + 1];
+            if (nextData) {
+                currentStage++;
+                loadStage(currentStage);
+            }
+        }
+
+        function reviewChapterIncorrect() {
+            document.getElementById('chapterEndModal').classList.remove('show');
+            if (incorrectStages.length === 0) {
+                alert("전체 범위에서 틀린 문제가 하나도 없습니다! 완벽합니다! 🎉");
+                return;
+            }
+            
+            const chapterMistakes = incorrectStages.filter(s => gameData[s].chapter === currentChapter);
+            
+            isIncorrectMode = true;
+            const btn = document.getElementById('incorrectModeBtn');
+            btn.classList.add('active');
+            
+            // If there are mistakes in THIS chapter, start with those
+            if (chapterMistakes.length > 0) {
+                chapterMistakes.sort((a,b) => a - b);
+                currentStage = chapterMistakes[0];
+            } else {
+                incorrectStages.sort((a,b) => a - b);
+                currentStage = incorrectStages[0];
+            }
+            
+            loadStage(currentStage);
+        }
+        
+        function nextStage() {
+            if (isIncorrectMode) {
+                if (incorrectStages.length === 0) {
+                    alert('오답 노트가 모두 비워졌습니다! 🎉');
+                    toggleIncorrectMode();
+                    return;
+                }
+                let next = incorrectStages.find(s => s > currentStage);
+                if (!next) next = incorrectStages[0]; // Wrap around
+                currentStage = next;
+                loadStage(currentStage);
+            } else {
+                if (currentStage < totalStages) {
+                    currentStage++;
+                    loadStage(currentStage);
+                }
+            }
+        }
+
+        function prevStage() {
+            if (isIncorrectMode) {
+                if (incorrectStages.length === 0) {
+                    return;
+                }
+                let prev = [...incorrectStages].reverse().find(s => s < currentStage);
+                if (!prev) prev = incorrectStages[incorrectStages.length - 1]; // Wrap around
+                currentStage = prev;
+                loadStage(currentStage);
+            } else {
+                if (currentStage > 1) {
+                    currentStage--;
+                    loadStage(currentStage);
+                }
+            }
+        }
+
+        function toggleIncorrectMode() {
+            isIncorrectMode = !isIncorrectMode;
+            const btn = document.getElementById('incorrectModeBtn');
+            if (isIncorrectMode) {
+                if (incorrectStages.length === 0) {
+                    alert('저장된 오답이 없습니다. 훌륭합니다!');
+                    isIncorrectMode = false;
+                    return;
+                }
+                btn.classList.add('active');
+                incorrectStages.sort((a,b) => a - b);
+                currentStage = incorrectStages[0];
+                loadStage(currentStage);
+            } else {
+                btn.classList.remove('active');
+                loadStage(currentStage);
+            }
+        }
+
+        function createConfetti() {
+            const container = document.querySelector('.app-container');
+            const colors = ['#ef4444', '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899', '#06b6d4'];
+            
+            for(let i=0; i<100; i++) {
+                const conf = document.createElement('div');
+                conf.style.position = 'absolute';
+                conf.style.left = '50%';
+                conf.style.top = '50%';
+                conf.style.width = Math.random() * 10 + 6 + 'px';
+                conf.style.height = Math.random() * 10 + 6 + 'px';
+                conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                conf.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                conf.style.zIndex = '1000';
+                conf.style.pointerEvents = 'none';
+                
+                container.appendChild(conf);
+
+                // Calculate random angle and distance for explosion
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = 250 + Math.random() * 300; // Increased distance
+                const tx = Math.cos(angle) * velocity;
+                const ty = Math.sin(angle) * velocity - 100; // slightly biased upwards
+                
+                const duration = 1800 + Math.random() * 1200; // 1.8s to 3.0s
+                
+                conf.animate([
+                    { transform: 'translate(-50%, -50%) scale(0) rotate(0deg)', opacity: 1 },
+                    { transform: `translate(calc(-50% + ${tx * 0.7}px), calc(-50% + ${ty * 0.7}px)) scale(1.2) rotate(${Math.random() * 360}deg)`, opacity: 1, offset: 0.3 },
+                    { transform: `translate(calc(-50% + ${tx * 1.5}px), calc(-50% + ${ty * 1.5 + 250}px)) scale(0) rotate(${Math.random() * 720}deg)`, opacity: 0 }
+                ], {
+                    duration: duration,
+                    easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
+                    fill: 'forwards'
+                });
+                
+                setTimeout(() => conf.remove(), duration);
+            }
+        }
+
+        // Verse Grid Logic
+        function showVerseGrid() {
+            document.getElementById('successModal').classList.remove('show');
+            const gridModal = document.getElementById('gridModal');
+            document.getElementById('gridTitle').textContent = `제 ${currentChapter} 장 (Level ${currentLevel})`;
+            
+            const verseGrid = document.getElementById('verseGrid');
+            verseGrid.innerHTML = '';
+            
+            // Find all stages for currentChapter
+            let stageNumInChapter = 1;
+            for (let i = 1; i <= totalStages; i++) {
+                if (gameData[i].chapter === currentChapter) {
+                    const btn = document.createElement('button');
+                    btn.className = 'verse-btn';
+                    
+                    // Check if cleared
+                    const isCleared = localStorage.getItem(`cleared_${i}_${currentLevel}`) === "true";
+                    if (isCleared) {
+                        btn.classList.add('cleared');
+                        btn.innerHTML = `${stageNumInChapter}절 ✔`;
+                    } else {
+                        btn.textContent = `${stageNumInChapter}절`;
+                    }
+                    
+                    const targetStage = i;
+                    btn.onclick = () => {
+                        currentStage = targetStage;
+                        loadStage(currentStage);
+                        closeVerseGrid();
+                    };
+                    verseGrid.appendChild(btn);
+                    stageNumInChapter++;
+                }
+            }
+            gridModal.classList.add('show');
+        }
+
+        function closeVerseGrid() {
+            document.getElementById('gridModal').classList.remove('show');
+        }
+
+        // ==========================================
+        // Settings & Home Screen Logic
+        // ==========================================
+        function openSettings() {
+            document.getElementById('settingsModal').style.display = 'flex';
+        }
+
+        function closeSettings() {
+            document.getElementById('settingsModal').style.display = 'none';
+        }
+
+        function applyTheme(themeName) {
+            document.documentElement.setAttribute('data-theme', themeName);
+            localStorage.setItem('appTheme', themeName);
+            
+            // Update UI buttons
+            document.querySelectorAll('.theme-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-theme-val') === themeName) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        function changeFontSize(delta) {
+            let root = document.documentElement;
+            let currentSize = parseFloat(getComputedStyle(root).getPropertyValue('--verse-font-size')) || 1.15;
+            let newSize = currentSize + delta;
+            if (newSize < 0.8) newSize = 0.8;
+            if (newSize > 2.0) newSize = 2.0;
+            
+            root.style.setProperty('--verse-font-size', newSize.toFixed(2) + 'rem');
+            localStorage.setItem('verseFontSize', newSize.toFixed(2));
+            updateFontSizeDisplay(newSize);
+        }
+
+        function updateFontSizeDisplay(size) {
+            let display = "기본";
+            if (size < 1.1) display = "작게";
+            else if (size > 1.3 && size <= 1.5) display = "크게";
+            else if (size > 1.5) display = "매우 크게";
+            const displayEl = document.getElementById('fontSizeDisplay');
+            if(displayEl) displayEl.textContent = display;
+        }
+
+        function startLearning() {
+            const home = document.getElementById('homeScreen');
+            home.style.opacity = '0';
+            home.style.pointerEvents = 'none';
+            setTimeout(() => {
+                home.style.display = 'none';
+                const app = document.getElementById('appContainer');
+                app.style.display = 'flex';
+                // Trigger reflow for transition
+                void app.offsetWidth;
+                app.style.opacity = '1';
+                app.style.transform = 'scale(1)';
+                
+                // Initialize the game state based on selected chapter/level
+                currentChapter = parseInt(document.getElementById('chapterSelect').value);
+                currentLevel = parseInt(document.getElementById('levelSelect').value);
+                
+                // Find first stage of the selected chapter
+                let firstStageOfChapter = 1;
+                for (let i = 1; i <= totalStages; i++) {
+                    if (gameData[i].chapter === currentChapter) {
+                        firstStageOfChapter = i;
+                        break;
+                    }
+                }
+                currentStage = firstStageOfChapter;
+                loadStage(currentStage);
+            }, 500);
+        }
+
+        function goHome() {
+            const app = document.getElementById('appContainer');
+            app.style.opacity = '0';
+            app.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                app.style.display = 'none';
+                const home = document.getElementById('homeScreen');
+                home.style.display = 'flex';
+                // Trigger reflow
+                void home.offsetWidth;
+                home.style.opacity = '1';
+                home.style.pointerEvents = 'auto';
+            }, 500);
+        }
+
+        // Initialize App
+        window.onload = () => {
+            // Load saved settings
+            let savedFontSize = localStorage.getItem('verseFontSize');
+            if (savedFontSize) {
+                document.documentElement.style.setProperty('--verse-font-size', savedFontSize + 'rem');
+                updateFontSizeDisplay(parseFloat(savedFontSize));
+            } else {
+                updateFontSizeDisplay(1.15); // Default
+            }
+
+            let savedTheme = localStorage.getItem('appTheme') || 'dark';
+            applyTheme(savedTheme);
+
+            // Set initial state of the app container
+            const appContainer = document.getElementById('appContainer');
+            appContainer.style.display = 'none';
+            appContainer.style.opacity = '0';
+            
+            const homeScreen = document.getElementById('homeScreen');
+            homeScreen.style.display = 'flex';
+            homeScreen.style.opacity = '1';
+            
+            // Ensure first stage is ready for fast load
+            loadStage(1);
+        };
+
+        // ==========================================
+        // 서비스 워커 등록 (오프라인 캐싱 및 성능 최적화)
+        // ==========================================
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').then(registration => {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }).catch(err => {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+
+            // 새 버전 감지 시 자동 새로고침 (좀비 캐시 방지)
+            let refreshing = false;
+            navigator.serviceWorker.addEventListener('controllerchange', () => {
+                if (!refreshing) {
+                    window.location.reload();
+                    refreshing = true;
+                }
+            });
+        }
+    </script>
+</body>
+</html>
