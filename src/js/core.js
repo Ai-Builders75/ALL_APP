@@ -145,7 +145,7 @@ function generateVerseHTML(verseText, coreKeywords) {
         let searchWord = synonyms[kw];
         if (!searchWord) {
             let cleanKw = kw.replace(/[.,!?]/g, '').trim();
-            searchWord = cleanKw.split(' ').join('[^<>]*?');
+            searchWord = cleanKw.split(' ').join('[\\s.,!?]+');
         }
         
         // Regex to avoid replacing inside HTML tags
