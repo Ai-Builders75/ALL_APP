@@ -168,7 +168,7 @@ function generateVerseHTML(verseText, coreKeywords) {
         targetKeywords = targetKeywords.concat(getExtraKeywords(verseText, coreKeywords, count));
     } else if (currentLevel === 5) {
         let allWords = verseText.replace(/[.,!?]/g, '').split(' ').filter(w => w.length > 0);
-        targetKeywords = [...new Set(allWords)];
+        targetKeywords = targetKeywords.concat(getExtraKeywords(verseText, coreKeywords, allWords.length, true));
     }
     
     // Sort target keywords by length descending so longer words get replaced first
