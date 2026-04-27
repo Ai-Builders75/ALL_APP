@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>404 핵심 키워드</title>
     
     <!-- PWA 지원 (홈 화면 추가) -->
@@ -10,8 +10,7 @@
     <meta name="theme-color" content="#1e293b">
     <link rel="apple-touch-icon" href="./icon-192x192.png">
 
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7902247777992049" crossorigin="anonymous"></script>
+    <!-- Google AdSense (Loaded dynamically based on environment) -->
     
     <!-- 인앱 브라우저(카카오톡 등) 차단 및 외부 브라우저 유도 스크립트 -->
     <script>
@@ -52,947 +51,7 @@
     </script>
 
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg-color: #0b0f19;
-            --card-bg: rgba(18, 25, 43, 0.65);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --primary: #3b82f6;
-            --primary-hover: #60a5fa;
-            --primary-glow: rgba(59, 130, 246, 0.5);
-            --success: #10b981;
-            --success-glow: rgba(16, 185, 129, 0.4);
-            --error: #ef4444;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --verse-font-size: 1.15rem;
-            --body-bg-gradient: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #0b0f19 70%, #000000 100%);
-            --orb-1-bg: rgba(59, 130, 246, 0.15);
-            --orb-2-bg: rgba(139, 92, 246, 0.15);
-        }
-
-        [data-theme="light"] {
-            --bg-color: #f1f5f9;
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --glass-border: rgba(0, 0, 0, 0.1);
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --primary-glow: rgba(37, 99, 235, 0.3);
-            --success: #059669;
-            --success-glow: rgba(5, 150, 105, 0.3);
-            --error: #dc2626;
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --body-bg-gradient: radial-gradient(circle at 50% 0%, #e2e8f0 0%, #f8fafc 70%, #ffffff 100%);
-            --orb-1-bg: rgba(37, 99, 235, 0.1);
-            --orb-2-bg: rgba(147, 51, 234, 0.1);
-        }
-
-        [data-theme="green"] {
-            --bg-color: #064e3b;
-            --card-bg: rgba(6, 78, 59, 0.8);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --primary: #10b981;
-            --primary-hover: #34d399;
-            --primary-glow: rgba(16, 185, 129, 0.5);
-            --success: #3b82f6;
-            --success-glow: rgba(59, 130, 246, 0.4);
-            --error: #ef4444;
-            --text-main: #ecfdf5;
-            --text-muted: #a7f3d0;
-            --body-bg-gradient: radial-gradient(circle at 50% 0%, #065f46 0%, #022c22 70%, #000000 100%);
-            --orb-1-bg: rgba(16, 185, 129, 0.15);
-            --orb-2-bg: rgba(59, 130, 246, 0.15);
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Pretendard', sans-serif;
-            background: var(--body-bg-gradient);
-            color: var(--text-main);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow: hidden;
-            transition: background 0.5s ease, color 0.5s ease;
-        }
-
-        /* Animated Background Orbs */
-        body::before, body::after {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            filter: blur(100px);
-            z-index: -1;
-            animation: float 20s infinite alternate ease-in-out;
-            transition: background 0.5s ease;
-        }
-        body::before {
-            background: var(--orb-1-bg);
-            top: -10%; left: -10%;
-        }
-        body::after {
-            background: var(--orb-2-bg);
-            bottom: -10%; right: -10%;
-            animation-delay: -10s;
-        }
-
-        @keyframes float {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(50px, 50px) scale(1.2); }
-        }
-
-        .app-container {
-            width: 100%;
-            max-width: 500px;
-            height: 100vh;
-            height: 100dvh; /* 모바일 브라우저 주소창 높이 자동 대응 */
-            background: var(--card-bg);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid var(--glass-border);
-            border-radius: 32px;
-            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            position: relative;
-            padding-bottom: 70px; /* 하단 배너 공간 확보 (AdSense) */
-        }
-
-        /* AdSense Container */
-        .ad-container-bottom {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 60px; /* Fixed height to prevent CLS */
-            background: rgba(0,0,0,0.2);
-            backdrop-filter: blur(10px);
-            z-index: 100;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-
-        .header {
-            padding: 12px 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-bottom: 1px solid var(--glass-border);
-            background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%);
-        }
-
-
-
-        .logo {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 0;
-            line-height: 1;
-        }
-
-        .logo-main {
-            font-size: 1.8rem;
-            font-weight: 900;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #60a5fa, #a78bfa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 2px 10px rgba(96, 165, 250, 0.2);
-        }
-
-        .logo-sub {
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 3px;
-            color: var(--text-muted);
-            margin-top: 4px;
-            margin-right: -3px; /* 자간(letter-spacing) 때문에 우측으로 쏠려보이는 현상 교정 */
-        }
-
-        .header-controls {
-            display: flex;
-            gap: 8px;
-        }
-
-        select, .nav-btn {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-main);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 8px 14px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            outline: none;
-            cursor: pointer;
-            font-family: inherit;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        select:hover, .nav-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-1px);
-        }
-
-        select option {
-            background-color: #0f172a;
-            color: #f8fafc;
-        }
-
-        .level-select {
-            background: rgba(16, 185, 129, 0.1);
-            color: #34d399;
-            border-color: rgba(16, 185, 129, 0.2);
-        }
-
-        .incorrect-btn {
-            background: rgba(239, 68, 68, 0.1);
-            color: #f87171;
-            border-color: rgba(239, 68, 68, 0.2);
-        }
-        .incorrect-btn.active {
-            background: #ef4444;
-            color: #fff;
-            box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
-            border-color: #ef4444;
-        }
-
-        .content {
-            flex: 1;
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow-y: auto;
-        }
-
-        .content::-webkit-scrollbar {
-            width: 6px;
-        }
-        .content::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
-
-        /* Ad Banner Container */
-        .ad-banner-container {
-            width: 100%;
-            height: 50px; /* 구글 애드몹 표준 모바일 배너 높이 */
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-top: 1px solid var(--glass-border);
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            z-index: 40; /* 키보드나 모달 아래에 배치 */
-        }
-
-        /* Quiz Section */
-        .quiz-section {
-            width: 100%;
-        }
-
-        .verse-box {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
-            padding: 24px;
-            border-radius: 20px;
-            font-size: var(--verse-font-size);
-            line-height: 1.8;
-            margin-bottom: 24px;
-            border: 1px solid var(--glass-border);
-            box-shadow: inset 0 2px 20px rgba(0,0,0,0.2);
-            word-break: keep-all;
-        }
-
-        .blank {
-            display: inline-block;
-            min-width: 50px;
-            padding: 0 8px;
-            height: 32px;
-            line-height: 32px;
-            border-bottom: 2px dashed rgba(255,255,255,0.3);
-            margin: 0 4px;
-            text-align: center;
-            color: #fff;
-            font-weight: 700;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            vertical-align: bottom;
-        }
-
-        .blank.active {
-            border-bottom: 2px solid var(--primary);
-            background: rgba(59, 130, 246, 0.15);
-            border-radius: 6px 6px 0 0;
-            box-shadow: inset 0 -10px 15px -10px var(--primary-glow);
-        }
-
-        .blank.filled {
-            border-bottom: 2px solid var(--success);
-            color: var(--success);
-            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        
-        .blank.error {
-            border-bottom: 2px solid var(--error);
-            color: var(--error);
-            animation: shake 0.5s;
-        }
-
-        /* Premium Hint Box */
-        .premium-hint-box {
-            background: rgba(30, 41, 59, 0.6);
-            border: 1px solid rgba(147, 197, 253, 0.2);
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 24px;
-            text-align: center;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25), inset 0 0 20px rgba(147, 197, 253, 0.05);
-            animation: slideDownFade 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: none;
-        }
-
-        .home-subtitle {
-            color: #cbd5e1;
-            margin-bottom: 30px;
-            text-align: center;
-            font-size: 1.05rem;
-        }
-        
-        @keyframes slideDownFade {
-            from { opacity: 0; transform: translateY(-15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hint-badge {
-            display: inline-block;
-            padding: 4px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 800;
-            margin-bottom: 16px;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-        }
-
-        .hint-text {
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: #ffffff;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-            margin-bottom: 12px;
-            font-family: 'Pretendard', sans-serif;
-            transition: all 0.3s ease;
-        }
-
-        .hint-subtext {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        /* Keyboard */
-        .keyboard {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            width: 100%;
-            margin-top: auto;
-            padding: 24px;
-            box-sizing: border-box;
-            background: rgba(11, 15, 25, 0.6);
-            backdrop-filter: blur(20px);
-            border-top: 1px solid var(--glass-border);
-        }
-
-        .typing-container {
-            width: 100%;
-            margin-top: auto;
-            padding: 24px;
-            box-sizing: border-box;
-            background: rgba(11, 15, 25, 0.6);
-            backdrop-filter: blur(20px);
-            border-top: 1px solid var(--glass-border);
-            display: flex;
-            gap: 12px;
-        }
-
-        .typing-input {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--glass-border);
-            color: #fff;
-            padding: 16px;
-            border-radius: 14px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            outline: none;
-            font-family: inherit;
-            transition: all 0.3s;
-        }
-
-        .typing-input:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 15px var(--primary-glow);
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .typing-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 14px;
-            padding: 0 24px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-family: inherit;
-        }
-
-        .typing-btn:hover {
-            background: var(--primary-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
-        }
-
-        .hint-btn {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            padding: 0 16px;
-            font-size: 1.4rem;
-        }
-        
-        .hint-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-        }
-
-        .error-shake {
-            animation: shake 0.5s;
-            border-color: var(--error) !important;
-            color: var(--error) !important;
-        }
-
-        .key {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            color: #fff;
-            padding: 12px 4px;
-            border-radius: 14px;
-            font-size: clamp(0.85rem, calc(var(--verse-font-size) * 0.45 + 0.4rem), 1.2rem); /* 글자가 아무리 커져도 레이아웃 파괴 방지 */
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            font-family: inherit;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            word-break: keep-all;
-            line-height: 1.2;
-        }
-        .key:hover {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-        }
-
-        .key:active {
-            background: var(--primary);
-            border-color: var(--primary-hover);
-            transform: translateY(1px);
-            box-shadow: 0 0 15px var(--primary-glow);
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.05);
-            position: absolute;
-            bottom: 0;
-            left: 0;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-            width: 0%;
-            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
-        }
-
-        /* Grid Modal */
-        .grid-modal {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(11, 15, 25, 0.85);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            display: none;
-            flex-direction: column;
-            z-index: 150;
-            padding: 24px;
-            box-sizing: border-box;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .grid-modal.show { 
-            display: flex; 
-            opacity: 1;
-        }
-        .grid-header {
-            display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid var(--glass-border);
-        }
-        .grid-header h2 { color: #fff; margin: 0; font-size: 1.3rem; font-weight: 800; }
-        .close-btn { background: none; border: none; color: var(--text-muted); font-size: 2.5rem; cursor: pointer; padding: 0; line-height: 0.8; transition: color 0.2s; }
-        .close-btn:hover { color: #fff; }
-        
-        .verse-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 12px;
-            overflow-y: auto;
-            padding-bottom: 20px;
-        }
-        
-        .verse-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--glass-border);
-            color: #fff;
-            padding: 16px 8px;
-            border-radius: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 0.95rem;
-            font-family: inherit;
-        }
-        
-        .verse-btn:hover { 
-            background: rgba(255, 255, 255, 0.1); 
-            transform: scale(1.05);
-        }
-        .verse-btn.cleared {
-            background: rgba(16, 185, 129, 0.15);
-            border-color: rgba(16, 185, 129, 0.4);
-            color: #34d399;
-            box-shadow: inset 0 0 15px rgba(16, 185, 129, 0.1);
-        }
-
-        /* Animations */
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            20% { transform: translateX(-6px); }
-            40% { transform: translateX(6px); }
-            60% { transform: translateX(-4px); }
-            80% { transform: translateX(4px); }
-        }
-
-        @keyframes confetti {
-            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
-        }
-
-        .success-modal {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(11, 15, 25, 0.85);
-            backdrop-filter: blur(15px);
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .success-modal.show { 
-            display: flex; 
-            opacity: 1;
-            animation: fadeIn 0.4s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .success-modal h2 { 
-            font-size: 2.2rem; 
-            color: #fff; 
-            margin-bottom: 8px;
-            text-shadow: 0 0 20px rgba(255,255,255,0.3);
-        }
-        .success-modal p { color: var(--text-muted); font-size: 1.1rem; }
-        
-        .next-btn {
-            padding: 16px 32px;
-            background: linear-gradient(135deg, var(--primary), #8b5cf6);
-            color: white;
-            border: none;
-            border-radius: 16px;
-            font-size: 1.15rem;
-            font-weight: 800;
-            cursor: pointer;
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
-            transition: all 0.3s ease;
-            font-family: inherit;
-        }
-
-        .next-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.6);
-        }
-
-        /* Auto Advance Overlay */
-        .auto-advance-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            padding: 16px 40px;
-            border-radius: 40px;
-            font-size: 1.8rem;
-            font-weight: 900;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
-            z-index: 100;
-            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.4);
-            letter-spacing: 2px;
-        }
-        .auto-advance-overlay.show {
-            opacity: 1;
-            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-        }
-
-        @keyframes popIn {
-            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
-            70% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
-            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-        }
-
-        /* Home Screen Styles */
-        #homeScreen {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 50;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-        .home-content {
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            padding: 40px;
-            border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            text-align: center;
-            width: 90%;
-            max-width: 400px;
-            position: relative;
-            backdrop-filter: blur(20px);
-        }
-        .home-logo {
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin: 0;
-            color: var(--primary);
-            text-shadow: 0 0 20px var(--primary-glow);
-            line-height: 1.1;
-        }
-        .home-logo-sub {
-            font-size: 1.2rem;
-            color: var(--text-main);
-            margin-bottom: 5px;
-            display: block;
-        }
-        #homeScreen {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            overflow-y: auto; /* 모바일 긴 화면 스크롤 허용 */
-        }
-        .home-content {
-            padding: 20px; /* 좁은 모바일 화면 대응 패딩 축소 */
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .home-subtitle {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            margin-bottom: 35px;
-            word-break: keep-all;
-            line-height: 1.4;
-        }
-        .home-select-group {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        .home-select-wrapper {
-            position: relative;
-            text-align: left;
-        }
-        .home-select-wrapper label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 5px;
-            display: block;
-            margin-left: 5px;
-        }
-        .home-select {
-            background: rgba(0, 0, 0, 0.2);
-            border: 1px solid var(--glass-border);
-            color: var(--text-main);
-            padding: 14px 16px;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            outline: none;
-            cursor: pointer;
-            font-family: inherit;
-            width: 100%;
-            appearance: none;
-            -webkit-appearance: none;
-        }
-        [data-theme="light"] .home-select { background: rgba(255, 255, 255, 0.5); }
-        .start-btn {
-            background: linear-gradient(135deg, var(--primary), #8b5cf6);
-            color: white;
-            border: none;
-            padding: 18px 0;
-            width: 100%;
-            border-radius: 14px;
-            font-size: 1.25rem;
-            font-weight: 800;
-            cursor: pointer;
-            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4);
-            transition: all 0.3s;
-            font-family: inherit;
-        }
-        .start-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.6);
-        }
-        .settings-icon {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--glass-border);
-            border-radius: 50%;
-            width: 44px; height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-        .settings-icon:hover {
-            background: rgba(255,255,255,0.15);
-            transform: rotate(90deg);
-        }
-        [data-theme="light"] .settings-icon {
-            color: var(--text-main);
-            border-color: var(--glass-border);
-            background: rgba(0,0,0,0.05);
-        }
-
-
-
-        /* Settings Modal Styles */
-        #settingsModal {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100vh;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(10px);
-            z-index: 200;
-            display: none;
-            justify-content: center;
-            align-items: center;
-        }
-        .settings-content {
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            padding: 30px;
-            border-radius: 24px;
-            width: 90%;
-            max-width: 350px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            animation: popIn 0.3s ease-out;
-            color: var(--text-main);
-        }
-        
-        .dropdown-container {
-            position: relative;
-            display: inline-block;
-        }
-        .level-dropdown {
-            position: absolute;
-            top: calc(100% + 5px);
-            left: 0;
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            width: 160px;
-            overflow: hidden;
-            z-index: 1000;
-            opacity: 0;
-            transform: translateY(-10px);
-            pointer-events: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .level-dropdown.show {
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
-        }
-        .level-dropdown-item {
-            padding: 12px 15px;
-            font-size: 0.95rem;
-            color: var(--text-main);
-            cursor: pointer;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            transition: background 0.2s;
-            text-align: left;
-        }
-        .level-dropdown-item:last-child {
-            border-bottom: none;
-        }
-        .level-dropdown-item:hover, .level-dropdown-item.active {
-            background: var(--primary);
-            color: white;
-        }
-        .settings-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-        .settings-title {
-            font-size: 1.3rem;
-            font-weight: 800;
-            margin: 0;
-        }
-        .close-settings {
-            background: none; border: none; color: var(--text-muted);
-            font-size: 1.8rem; cursor: pointer; padding: 0; line-height: 1;
-        }
-        .setting-item {
-            margin-bottom: 25px;
-            text-align: left;
-        }
-        .setting-label {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-            display: block;
-        }
-        .theme-options {
-            display: flex;
-            gap: 10px;
-        }
-        .theme-btn {
-            flex: 1;
-            padding: 12px 0;
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            background: rgba(255,255,255,0.05);
-            color: var(--text-main);
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: inherit;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-        .theme-btn.active {
-            border-color: var(--primary);
-            background: var(--primary-glow);
-            box-shadow: 0 0 10px var(--primary-glow);
-        }
-        [data-theme="light"] .theme-btn { background: rgba(0,0,0,0.05); }
-        [data-theme="light"] .theme-btn.active { background: var(--primary-glow); }
-        .font-size-controls {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(0,0,0,0.2);
-            padding: 10px;
-            border-radius: 12px;
-            border: 1px solid var(--glass-border);
-        }
-        [data-theme="light"] .font-size-controls { background: rgba(255,255,255,0.5); }
-        .font-size-btn {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid var(--glass-border);
-            color: var(--text-main);
-            width: 44px; height: 44px;
-            border-radius: 10px;
-            font-size: 1.2rem;
-            font-weight: 800;
-            cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            transition: all 0.2s;
-        }
-        .font-size-btn:active { background: rgba(255,255,255,0.2); transform: scale(0.95); }
-        [data-theme="light"] .font-size-btn { background: rgba(0,0,0,0.05); }
-        .font-size-display {
-            flex: 1; text-align: center; font-size: 1.1rem; font-weight: 700; color: var(--text-main);
-        }
-
-        /* Mobile Responsive Styles */
-        @media (max-width: 480px) {
-            .app-container {
-                border-radius: 0;
-                border: none;
-                max-width: 100vw;
-            }
-            .header {
-                flex-direction: column;
-                gap: 12px;
-                padding: 16px;
-            }
-            .header-controls {
-                flex-wrap: wrap;
-                justify-content: center;
-                width: 100%;
-            }
-            .content {
-                padding: 16px;
-            }
-            .verse-box {
-                padding: 16px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="src/styles/main.css">
 </head>
 <body>
 
@@ -1113,18 +172,16 @@
                     <div class="hint-subtext" id="hintSubtext">한 번 더 누르면 전체 초성이 공개됩니다.</div>
                 </div>
 
-                <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem;">아래 보기에서 알맞은 키워드를 선택하여 빈칸을 채우세요.</p>
+                <div class="keyboard" id="keyboard">
+                    <!-- Keys populated by JS -->
+                </div>
+
+                <div class="typing-container" id="typingContainer" style="display: none;">
+                    <button class="typing-btn hint-btn" onclick="showChoseongHint()" id="hintBtn" title="초성 힌트 보기">💡</button>
+                    <input type="text" id="typingInput" class="typing-input" placeholder="정답을 입력하세요" onkeydown="handleTypingKeypress(event)" oninput="handleTypingInput(event)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                    <button class="typing-btn" onclick="submitTyping()">확인</button>
+                </div>
             </div>
-        </div>
-
-        <div class="keyboard" id="keyboard">
-            <!-- Keys populated by JS -->
-        </div>
-
-        <div class="typing-container" id="typingContainer" style="display: none;">
-            <button class="typing-btn hint-btn" onclick="showChoseongHint()" id="hintBtn" title="초성 힌트 보기">💡</button>
-            <input type="text" id="typingInput" class="typing-input" placeholder="정답을 직접 입력하세요" onkeypress="handleTypingKeypress(event)" autocomplete="off">
-            <button class="typing-btn" onclick="submitTyping()">확인</button>
         </div>
 
         <div class="progress-bar">
@@ -1163,14 +220,8 @@
         </div>
         
         <!-- Bottom Banner Ad (AdSense) -->
-        <div class="ad-container-bottom">
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:320px;height:50px"
-                 data-ad-client="ca-pub-7902247777992049"
-                 data-ad-slot="1234567890"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+        <div class="ad-container-bottom" id="adsense-container" style="display: none;">
+            <!-- AdSense logic will be injected here dynamically -->
         </div>
     </div>
 
@@ -1209,6 +260,7 @@
 
         function changeLevel(levelStr) {
             currentLevel = parseInt(levelStr);
+            if (typeof updateAdPosition === 'function') updateAdPosition(currentLevel);
             loadStage(currentStage); // reload current stage with new level
         }
 
@@ -1315,7 +367,7 @@
                 let searchWord = synonyms[kw];
                 if (!searchWord) {
                     let cleanKw = kw.replace(/[.,!?]/g, '').trim();
-                    searchWord = cleanKw.split(' ').join('[^<>]*?');
+                    searchWord = cleanKw.split(' ').join('[\\s.,!?]+');
                 }
                 
                 // Regex to avoid replacing inside HTML tags
@@ -1386,40 +438,16 @@
                 keyboardWords.push(allKeywords.pop());
             }
             
-            // Update ad banner position based on level
-            const adContainer = document.querySelector('.ad-container-bottom');
-            const appContainer = document.querySelector('.app-container');
-
             if (currentLevel >= 4) {
                 document.getElementById('keyboard').style.display = 'none';
                 document.getElementById('typingContainer').style.display = 'flex';
                 document.getElementById('typingInput').value = '';
-                document.getElementById('typingInput').placeholder = '정답을 직접 입력하세요';
-                document.getElementById('typingInput').focus();
-
-                if(adContainer) {
-                    adContainer.style.top = '0';
-                    adContainer.style.bottom = 'auto';
-                    adContainer.style.display = 'flex'; // Ensure visible
-                }
-                if(appContainer) {
-                    appContainer.style.paddingTop = '60px'; // Room for top banner
-                    appContainer.style.paddingBottom = '0px';
-                }
+                document.getElementById('typingInput').placeholder = '정답을 입력하세요';
+                // removed auto focus to prevent keyboard from popping up immediately
             } else {
-                document.getElementById('keyboard').style.display = 'grid';
+                document.getElementById('keyboard').style.display = 'flex';
                 document.getElementById('typingContainer').style.display = 'none';
                 renderKeyboard(keyboardWords);
-
-                if(adContainer) {
-                    adContainer.style.top = 'auto';
-                    adContainer.style.bottom = '0';
-                    adContainer.style.display = 'flex'; // Ensure visible
-                }
-                if(appContainer) {
-                    appContainer.style.paddingTop = '0px';
-                    appContainer.style.paddingBottom = '70px'; // Room for bottom banner
-                }
             }
             updateProgress();
             
@@ -1441,10 +469,31 @@
         }
 
         function handleTypingKeypress(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                if (e.key === ' ') {
-                    e.preventDefault(); // 스페이스바를 칠 때 입력창에 띄어쓰기가 들어가지 않게 방지
-                }
+            // IME 조합 중이거나 모바일 키보드 버그(229)일 때는 Enter 무시
+            if (e.key === 'Enter' && !e.isComposing && e.keyCode !== 229) {
+                e.preventDefault();
+                submitTyping();
+            }
+            // 스페이스바(e.key === ' ')는 이제 아무것도 방해하지 않고 자연스럽게 띄어쓰기가 입력되도록 둡니다.
+        }
+
+        // 입력될 때마다 실시간으로 정답을 확인하여, 맞으면 즉시 다음 빈칸으로 넘어가는 기능 (마법 같은 사용자 경험)
+        function handleTypingInput(e) {
+            if (currentBlankIndex >= blanks.length) return;
+            const inputEl = document.getElementById('typingInput');
+            const userInput = inputEl.value;
+            
+            // 입력값이 비어있으면 무시
+            if (!userInput.trim()) return;
+            
+            const currentBlank = blanks[currentBlankIndex];
+            const answer = currentBlank.getAttribute('data-answer');
+            const regexRemoveSpecial = /[^가-힣a-zA-Z0-9]/g;
+            const normalizedInput = userInput.normalize('NFC').replace(regexRemoveSpecial, '');
+            const normalizedAnswer = (synonyms[answer] || answer).normalize('NFC').replace(regexRemoveSpecial, '');
+            
+            // 입력값이 정답과 완전히 일치하면 스페이스바/엔터 없이 즉시 통과!
+            if (normalizedInput === normalizedAnswer && normalizedInput.length > 0) {
                 submitTyping();
             }
         }
@@ -1465,7 +514,7 @@
 
         function hidePremiumHint() {
             document.getElementById('premiumHintBox').style.display = 'none';
-            document.getElementById('typingInput').placeholder = '정답을 직접 입력하세요';
+            document.getElementById('typingInput').placeholder = '정답을 입력하세요';
             hintState = 0;
         }
 
@@ -1551,11 +600,10 @@
             
             const currentBlank = blanks[currentBlankIndex];
             const answer = currentBlank.getAttribute('data-answer');
-            
-            const normalizedInput = userInput.replace(/\s+/g, '');
-            const normalizedAnswer = (synonyms[answer] || answer).replace(/\s+/g, '');
-            
-            if (normalizedInput === normalizedAnswer || normalizedInput === answer.replace(/\s+/g, '')) {
+            const regexRemoveSpecial = /[^가-힣a-zA-Z0-9]/g;
+            const normalizedInput = userInput.normalize('NFC').replace(regexRemoveSpecial, '');
+            const normalizedAnswer = (synonyms[answer] || answer).normalize('NFC').replace(regexRemoveSpecial, '');
+            if (normalizedInput === normalizedAnswer) {
                 currentBlank.textContent = synonyms[answer] || answer;
                 currentBlank.classList.remove('active');
                 currentBlank.classList.add('filled');
@@ -1565,7 +613,7 @@
                 updateProgress();
                 
                 inputEl.value = '';
-                inputEl.placeholder = '정답을 직접 입력하세요';
+                inputEl.placeholder = '정답을 입력하세요';
                 inputEl.focus();
                 
                 if (currentBlankIndex < blanks.length) {
@@ -1916,25 +964,52 @@
             });
         }
 
+        const FONT_SIZES = [
+            { value: 0.9, label: "작게" },
+            { value: 1.15, label: "기본" },
+            { value: 1.4, label: "크게" },
+            { value: 1.65, label: "매우 크게" }
+        ];
+
         function changeFontSize(delta) {
             let root = document.documentElement;
             let currentSize = parseFloat(getComputedStyle(root).getPropertyValue('--verse-font-size')) || 1.15;
-            let newSize = currentSize + delta;
-            if (newSize < 0.8) newSize = 0.8;
-            if (newSize > 2.0) newSize = 2.0;
             
-            root.style.setProperty('--verse-font-size', newSize.toFixed(2) + 'rem');
-            localStorage.setItem('verseFontSize', newSize.toFixed(2));
+            let currentIndex = 1;
+            let minDiff = Infinity;
+            FONT_SIZES.forEach((fs, i) => {
+                let diff = Math.abs(fs.value - currentSize);
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    currentIndex = i;
+                }
+            });
+
+            let step = delta > 0 ? 1 : -1;
+            let newIndex = currentIndex + step;
+            
+            if (newIndex < 0) newIndex = 0;
+            if (newIndex >= FONT_SIZES.length) newIndex = FONT_SIZES.length - 1;
+            
+            let newSize = FONT_SIZES[newIndex].value;
+            
+            root.style.setProperty('--verse-font-size', newSize + 'rem');
+            localStorage.setItem('verseFontSize', newSize);
             updateFontSizeDisplay(newSize);
         }
 
         function updateFontSizeDisplay(size) {
-            let display = "기본";
-            if (size < 1.1) display = "작게";
-            else if (size > 1.3 && size <= 1.5) display = "크게";
-            else if (size > 1.5) display = "매우 크게";
+            let label = "기본";
+            let minDiff = Infinity;
+            FONT_SIZES.forEach((fs) => {
+                let diff = Math.abs(fs.value - size);
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    label = fs.label;
+                }
+            });
             const displayEl = document.getElementById('fontSizeDisplay');
-            if(displayEl) displayEl.textContent = display;
+            if(displayEl) displayEl.textContent = label;
         }
 
         function startLearning() {
@@ -2044,6 +1119,106 @@
                 }
             });
         }
+    </script>
+
+    <!-- Google Monetization (AdSense/AdMob) Hybrid Integration & Mobile Optimizations -->
+    <script>
+        document.addEventListener("DOMContentLoaded", async function() {
+            // Removed mobile focus scroll block which caused UI layout breaks and header hiding
+            window.updateAdPosition = async function(level) {
+                if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.AdMob) {
+                    try {
+                        const AdMob = window.Capacitor.Plugins.AdMob;
+                        await AdMob.removeBanner().catch(e => {}); // safe remove
+                        const pos = (level >= 4) ? 'TOP_CENTER' : 'BOTTOM_CENTER';
+                        
+                        const appContainer = document.getElementById('appContainer');
+                        if (appContainer) {
+                            if (level >= 4) {
+                                appContainer.style.paddingTop = '90px';
+                                appContainer.style.paddingBottom = '40px'; // Ensure space for Android navigation bar
+                            } else {
+                                appContainer.style.paddingTop = '0px';
+                                appContainer.style.paddingBottom = '70px'; // Restore default bottom padding for bottom ad
+                            }
+                        }
+
+                        const options = {
+                            adId: 'ca-app-pub-3940256099942544/6300978111', // Test Banner ID
+                            margin: 0,
+                            isTesting: false,
+                            adSize: 'ADAPTIVE_BANNER',
+                            position: pos
+                        };
+                        await AdMob.showBanner(options);
+                        console.log(`[Monetization] AdMob banner moved to ${pos}`);
+                    } catch (e) {
+                        console.error("[Monetization] AdMob Position Update Error:", e);
+                    }
+                }
+            };
+
+            const isNative = window.Capacitor && window.Capacitor.isNativePlatform();
+
+            if (isNative) {
+                // [APP] Capacitor Native Environment: Use AdMob & Setup Hardware Back Button
+                console.log("[Monetization] Native environment detected. Initializing AdMob...");
+                
+                try {
+                    if (window.Capacitor.Plugins.App) {
+                        window.Capacitor.Plugins.App.addListener('backButton', () => {
+                            const appContainer = document.getElementById('appContainer');
+                            if (appContainer && appContainer.style.display !== 'none') {
+                                if (typeof goHome === 'function') goHome();
+                            } else {
+                                window.Capacitor.Plugins.App.exitApp();
+                            }
+                        });
+                        console.log("[Mobile] Hardware back button intercepted.");
+                    }
+                } catch (err) {
+                    console.error("[Mobile] Back button setup failed", err);
+                }
+
+                try {
+                    // Try to initialize AdMob via Capacitor plugins
+                    if (window.Capacitor.Plugins && window.Capacitor.Plugins.AdMob) {
+                        const AdMob = window.Capacitor.Plugins.AdMob;
+                        await AdMob.initialize();
+                        
+                        // Set initial ad position based on currentLevel
+                        updateAdPosition(typeof currentLevel !== 'undefined' ? currentLevel : 1);
+                    } else {
+                        console.warn("[Monetization] AdMob plugin not found.");
+                    }
+                } catch (e) {
+                    console.error("[Monetization] AdMob Error:", e);
+                }
+            } else {
+                // [WEB] Web Environment: Use AdSense
+                console.log("[Monetization] Web environment detected. Initializing AdSense...");
+                const adsenseContainer = document.getElementById('adsense-container');
+                if (adsenseContainer) {
+                    adsenseContainer.style.display = 'block';
+                    adsenseContainer.innerHTML = `
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:320px;height:50px"
+                             data-ad-client="ca-pub-7902247777992049"
+                             data-ad-slot="1234567890"></ins>
+                    `;
+                    
+                    const script = document.createElement('script');
+                    script.async = true;
+                    script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7902247777992049";
+                    script.crossOrigin = "anonymous";
+                    document.head.appendChild(script);
+
+                    const inlineScript = document.createElement('script');
+                    inlineScript.textContent = "(adsbygoogle = window.adsbygoogle || []).push({});";
+                    document.body.appendChild(inlineScript);
+                }
+            }
+        });
     </script>
 </body>
 </html>
