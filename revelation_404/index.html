@@ -419,8 +419,7 @@
                 let count = Math.floor(allWords.length * 0.5);
                 targetKeywords = targetKeywords.concat(getExtraKeywords(verseText, coreKeywords, count));
             } else if (currentLevel === 5) {
-                let allWords = verseText.replace(/[.,!?]/g, '').split(' ').filter(w => w.length > 0);
-                targetKeywords = targetKeywords.concat(getExtraKeywords(verseText, coreKeywords, allWords.length, true));
+                targetKeywords = verseText.replace(/[.,!?]/g, '').split(' ').filter(w => w.length > 0);
             }
             
             // Sort target keywords by length descending so longer words get replaced first
