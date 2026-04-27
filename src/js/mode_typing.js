@@ -28,7 +28,7 @@ function hidePremiumHint() {
     const hintBox = document.getElementById('premiumHintBox');
     const inputEl = document.getElementById('typingInput');
     if (hintBox) hintBox.style.display = 'none';
-    if (inputEl) inputEl.placeholder = '정답을 직접 입력하세요';
+    if (inputEl) inputEl.placeholder = '정답을 입력하세요';
     hintState = 0;
 }
 
@@ -131,7 +131,7 @@ function submitTyping() {
         if (typeof updateProgress === 'function') updateProgress();
         
         inputEl.value = '';
-        inputEl.placeholder = '정답을 직접 입력하세요';
+        inputEl.placeholder = '정답을 입력하세요';
         inputEl.focus();
         
         if (currentBlankIndex < blanks.length) {

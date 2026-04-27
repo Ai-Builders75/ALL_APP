@@ -272,7 +272,7 @@ window.gameData = gameData;
                 document.getElementById('keyboard').style.display = 'none';
                 document.getElementById('typingContainer').style.display = 'flex';
                 document.getElementById('typingInput').value = '';
-                document.getElementById('typingInput').placeholder = '정답을 직접 입력하세요';
+                document.getElementById('typingInput').placeholder = '정답을 입력하세요';
                 document.getElementById('typingInput').focus();
             } else {
                 document.getElementById('keyboard').style.display = 'grid';
@@ -320,7 +320,7 @@ window.gameData = gameData;
 
         function hidePremiumHint() {
             document.getElementById('premiumHintBox').style.display = 'none';
-            document.getElementById('typingInput').placeholder = '정답을 직접 입력하세요';
+            document.getElementById('typingInput').placeholder = '정답을 입력하세요';
             hintState = 0;
         }
 
@@ -420,7 +420,7 @@ window.gameData = gameData;
                 updateProgress();
                 
                 inputEl.value = '';
-                inputEl.placeholder = '정답을 직접 입력하세요';
+                inputEl.placeholder = '정답을 입력하세요';
                 inputEl.focus();
                 
                 if (currentBlankIndex < blanks.length) {

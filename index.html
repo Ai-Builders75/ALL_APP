@@ -178,7 +178,7 @@
 
                 <div class="typing-container" id="typingContainer" style="display: none;">
                     <button class="typing-btn hint-btn" onclick="showChoseongHint()" id="hintBtn" title="초성 힌트 보기">💡</button>
-                    <input type="text" id="typingInput" class="typing-input" placeholder="정답을 직접 입력하세요" onkeydown="handleTypingKeypress(event)" autocomplete="off">
+                    <input type="text" id="typingInput" class="typing-input" placeholder="정답을 입력하세요" onkeydown="handleTypingKeypress(event)" autocomplete="off">
                     <button class="typing-btn" onclick="submitTyping()">확인</button>
                 </div>
             </div>
@@ -442,7 +442,7 @@
                 document.getElementById('keyboard').style.display = 'none';
                 document.getElementById('typingContainer').style.display = 'flex';
                 document.getElementById('typingInput').value = '';
-                document.getElementById('typingInput').placeholder = '정답을 직접 입력하세요';
+                document.getElementById('typingInput').placeholder = '정답을 입력하세요';
                 // removed auto focus to prevent keyboard from popping up immediately
             } else {
                 document.getElementById('keyboard').style.display = 'flex';
@@ -493,7 +493,7 @@
 
         function hidePremiumHint() {
             document.getElementById('premiumHintBox').style.display = 'none';
-            document.getElementById('typingInput').placeholder = '정답을 직접 입력하세요';
+            document.getElementById('typingInput').placeholder = '정답을 입력하세요';
             hintState = 0;
         }
 
@@ -593,7 +593,7 @@
                 updateProgress();
                 
                 inputEl.value = '';
-                inputEl.placeholder = '정답을 직접 입력하세요';
+                inputEl.placeholder = '정답을 입력하세요';
                 inputEl.focus();
                 
                 if (currentBlankIndex < blanks.length) {

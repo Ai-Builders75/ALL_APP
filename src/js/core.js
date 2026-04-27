@@ -228,7 +228,7 @@ function loadStage(stageNumber) {
         if (tc) tc.style.display = 'flex';
         if (ti) {
             ti.value = '';
-            ti.placeholder = '정답을 직접 입력하세요';
+            ti.placeholder = '정답을 입력하세요';
         }
     } else {
         if (kb) kb.style.display = 'flex';
