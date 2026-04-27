@@ -19,8 +19,11 @@ function handleTypingInput(e) {
     const normalizedInput = userInput.normalize('NFC').replace(regexRemoveSpecial, '');
     const normalizedAnswer = (synonyms[answer] || answer).normalize('NFC').replace(regexRemoveSpecial, '');
     
+    // 정답과 완전히 일치하고, 마지막 글자가 공백(스페이스바)일 경우에만 스페이스바를 '제출' 버튼처럼 처리
     if (normalizedInput === normalizedAnswer && normalizedInput.length > 0) {
-        submitTyping();
+        if (userInput.endsWith(' ') || userInput.endsWith('　')) {
+            submitTyping();
+        }
     }
 }
 
