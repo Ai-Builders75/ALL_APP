@@ -53,26 +53,74 @@
             if (!isSoundEnabled) return;
             try {
                 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const now = audioCtx.currentTime;
+
+                // 1. Confetti 'POP' Sound (White Noise burst)
+                const popDuration = 0.15;
+                const bufferSize = audioCtx.sampleRate * popDuration;
+                const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+                const data = buffer.getChannelData(0);
+                for (let i = 0; i < bufferSize; i++) {
+                    data[i] = Math.random() * 2 - 1;
+                }
+                const noiseSource = audioCtx.createBufferSource();
+                noiseSource.buffer = buffer;
                 
-                // Play a quick ascending bright chime (C5 -> E5 -> G5)
-                const playNote = (freq, startTime) => {
-                    const osc = audioCtx.createOscillator();
-                    const gain = audioCtx.createGain();
-                    osc.type = 'sine';
-                    osc.frequency.setValueAtTime(freq, startTime);
-                    gain.gain.setValueAtTime(0, startTime);
-                    gain.gain.linearRampToValueAtTime(0.1, startTime + 0.02);
-                    gain.gain.exponentialRampToValueAtTime(0.01, startTime + 0.2);
-                    osc.connect(gain);
-                    gain.connect(audioCtx.destination);
-                    osc.start(startTime);
-                    osc.stop(startTime + 0.2);
+                const noiseFilter = audioCtx.createBiquadFilter();
+                noiseFilter.type = 'highpass';
+                noiseFilter.frequency.value = 1000;
+
+                const noiseGain = audioCtx.createGain();
+                noiseGain.gain.setValueAtTime(0.5, now);
+                noiseGain.gain.exponentialRampToValueAtTime(0.01, now + popDuration);
+
+                noiseSource.connect(noiseFilter);
+                noiseFilter.connect(noiseGain);
+                noiseGain.connect(audioCtx.destination);
+                noiseSource.start(now);
+
+                // 2. Sparkle/Magic Chime (Arpeggiated chords with rich timbre)
+                const playNote = (freq, startTime, duration) => {
+                    const osc1 = audioCtx.createOscillator();
+                    const osc2 = audioCtx.createOscillator();
+                    const osc3 = audioCtx.createOscillator();
+                    const gainNode = audioCtx.createGain();
+
+                    osc1.type = 'sine';
+                    osc2.type = 'triangle';
+                    osc3.type = 'sine';
+
+                    // Slight detuning for chorus effect and inharmonic overtones (bell-like)
+                    osc1.frequency.setValueAtTime(freq, startTime);
+                    osc2.frequency.setValueAtTime(freq * 2.01, startTime); 
+                    osc3.frequency.setValueAtTime(freq * 3.02, startTime);
+
+                    // Envelope: sharp attack, smooth decay
+                    gainNode.gain.setValueAtTime(0, startTime);
+                    gainNode.gain.linearRampToValueAtTime(0.12, startTime + 0.02);
+                    gainNode.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+
+                    osc1.connect(gainNode);
+                    osc2.connect(gainNode);
+                    osc3.connect(gainNode);
+                    gainNode.connect(audioCtx.destination);
+
+                    osc1.start(startTime);
+                    osc2.start(startTime);
+                    osc3.start(startTime);
+                    
+                    osc1.stop(startTime + duration);
+                    osc2.stop(startTime + duration);
+                    osc3.stop(startTime + duration);
                 };
 
-                const now = audioCtx.currentTime;
-                playNote(523.25, now);       // C5
-                playNote(659.25, now + 0.1); // E5
-                playNote(783.99, now + 0.2); // G5
+                // Play a rapid, magical harp-like arpeggio
+                const notes = [523.25, 659.25, 783.99, 1046.50, 1318.51, 1567.98]; // C5, E5, G5, C6, E6, G6
+                notes.forEach((freq, index) => {
+                    // Stagger the notes by 0.04 seconds
+                    playNote(freq, now + 0.04 * index, 1.5); 
+                });
+
             } catch(e) {
                 console.log('Audio not supported or blocked');
             }
