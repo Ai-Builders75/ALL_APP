@@ -492,12 +492,21 @@
             const regexRemoveSpecial = /[^가-힣a-zA-Z0-9]/g;
             const normalizedInput = userInput.normalize('NFC').replace(regexRemoveSpecial, '');
             const normalizedAnswer = (synonyms[answer] || answer).normalize('NFC').replace(regexRemoveSpecial, '');
+            const answerText = synonyms[answer] || answer;
+            const targetSpaces = (answerText.match(/ /g) || []).length;
+            const inputSpaces = (userInput.match(/ /g) || []).length + (userInput.match(/　/g) || []).length;
             
-            // 정답과 완전히 일치하고, 마지막 글자가 공백(스페이스바)일 경우에만 스페이스바를 '제출' 버튼처럼 처리
+            // 정답과 완전히 일치하고 마지막이 공백인 경우 (기존 정상 입력)
             if (normalizedInput === normalizedAnswer && normalizedInput.length > 0) {
                 if (userInput.endsWith(' ') || userInput.endsWith('　')) {
                     submitTyping();
+                    return;
                 }
+            }
+            
+            // 오타가 났더라도, 정답에 포함된 띄어쓰기 개수보다 더 많은 띄어쓰기를 입력했다면 단어 입력이 끝난 것으로 간주하고 제출 (오답 처리)
+            if (inputSpaces > targetSpaces && (userInput.endsWith(' ') || userInput.endsWith('　'))) {
+                submitTyping();
             }
         }
 
