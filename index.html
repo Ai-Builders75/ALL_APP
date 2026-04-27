@@ -178,7 +178,7 @@
 
                 <div class="typing-container" id="typingContainer" style="display: none;">
                     <button class="typing-btn hint-btn" onclick="showChoseongHint()" id="hintBtn" title="초성 힌트 보기">💡</button>
-                    <input type="text" id="typingInput" class="typing-input" placeholder="정답을 입력하세요" onkeydown="handleTypingKeypress(event)" autocomplete="off">
+                    <input type="text" id="typingInput" class="typing-input" placeholder="정답을 입력하세요" onkeydown="handleTypingKeypress(event)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
                     <button class="typing-btn" onclick="submitTyping()">확인</button>
                 </div>
             </div>
@@ -367,7 +367,7 @@
                 let searchWord = synonyms[kw];
                 if (!searchWord) {
                     let cleanKw = kw.replace(/[.,!?]/g, '').trim();
-                    searchWord = cleanKw.split(' ').join('[^<>]*?');
+                    searchWord = cleanKw.split(' ').join('[\\s.,!?]+');
                 }
                 
                 // Regex to avoid replacing inside HTML tags
@@ -579,11 +579,10 @@
             
             const currentBlank = blanks[currentBlankIndex];
             const answer = currentBlank.getAttribute('data-answer');
-            
-            const normalizedInput = userInput.replace(/\s+/g, '');
-            const normalizedAnswer = (synonyms[answer] || answer).replace(/\s+/g, '');
-            
-            if (normalizedInput === normalizedAnswer || normalizedInput === answer.replace(/\s+/g, '')) {
+            const regexRemoveSpecial = /[^가-힣a-zA-Z0-9]/g;
+            const normalizedInput = userInput.normalize('NFC').replace(regexRemoveSpecial, '');
+            const normalizedAnswer = (synonyms[answer] || answer).normalize('NFC').replace(regexRemoveSpecial, '');
+            if (normalizedInput === normalizedAnswer) {
                 currentBlank.textContent = synonyms[answer] || answer;
                 currentBlank.classList.remove('active');
                 currentBlank.classList.add('filled');

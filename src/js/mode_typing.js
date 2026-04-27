@@ -117,11 +117,11 @@ function submitTyping() {
     
     const currentBlank = blanks[currentBlankIndex];
     const answer = currentBlank.getAttribute('data-answer');
+    const regexRemoveSpecial = /[^가-힣a-zA-Z0-9]/g;
+    const normalizedInput = userInput.normalize('NFC').replace(regexRemoveSpecial, '');
+    const normalizedAnswer = (synonyms[answer] || answer).normalize('NFC').replace(regexRemoveSpecial, '');
     
-    const normalizedInput = userInput.replace(/\s+/g, '');
-    const normalizedAnswer = (synonyms[answer] || answer).replace(/\s+/g, '');
-    
-    if (normalizedInput === normalizedAnswer || normalizedInput === answer.replace(/\s+/g, '')) {
+    if (normalizedInput === normalizedAnswer) {
         currentBlank.textContent = synonyms[answer] || answer;
         currentBlank.classList.remove('active');
         currentBlank.classList.add('filled');
