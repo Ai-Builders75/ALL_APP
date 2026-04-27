@@ -242,6 +242,41 @@
         let isIncorrectMode = false;
         let mistakesThisStage = 0;
         
+        let isSoundEnabled = true;
+
+        function toggleSound() {
+            isSoundEnabled = !isSoundEnabled;
+            const btn = document.getElementById('soundToggleBtn');
+            if (btn) {
+                btn.innerHTML = isSoundEnabled ? '🔊' : '🔇';
+                btn.style.opacity = isSoundEnabled ? '1' : '0.5';
+            }
+        }
+
+        function playErrorSound() {
+            if (!isSoundEnabled) return;
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+                
+                oscillator.type = 'sawtooth';
+                oscillator.frequency.setValueAtTime(150, audioCtx.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(80, audioCtx.currentTime + 0.15);
+                
+                gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15);
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                
+                oscillator.start();
+                oscillator.stop(audioCtx.currentTime + 0.15);
+            } catch(e) {
+                console.log('Audio not supported or blocked');
+            }
+        }
+        
         // 특수 예외 처리어 사전 (키워드 -> 성경 본문 내의 실제 텍스트)
         const synonyms = {};
         
@@ -634,6 +669,7 @@
                     handleStageClear();
                 }
             } else {
+                if (typeof playErrorSound === 'function') playErrorSound();
                 mistakesThisStage++;
                 if (!incorrectStages.includes(currentStage)) {
                     incorrectStages.push(currentStage);
@@ -683,6 +719,7 @@
                     handleStageClear();
                 }
             } else {
+                if (typeof playErrorSound === 'function') playErrorSound();
                 mistakesThisStage++;
                 if (!incorrectStages.includes(currentStage)) {
                     incorrectStages.push(currentStage);
