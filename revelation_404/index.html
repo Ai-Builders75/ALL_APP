@@ -276,6 +276,35 @@
                 console.log('Audio not supported or blocked');
             }
         }
+
+        function playSuccessSound() {
+            if (!isSoundEnabled) return;
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                
+                // Play a quick ascending bright chime (C5 -> E5 -> G5)
+                const playNote = (freq, startTime) => {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, startTime);
+                    gain.gain.setValueAtTime(0, startTime);
+                    gain.gain.linearRampToValueAtTime(0.1, startTime + 0.02);
+                    gain.gain.exponentialRampToValueAtTime(0.01, startTime + 0.2);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(startTime);
+                    osc.stop(startTime + 0.2);
+                };
+
+                const now = audioCtx.currentTime;
+                playNote(523.25, now);       // C5
+                playNote(659.25, now + 0.1); // E5
+                playNote(783.99, now + 0.2); // G5
+            } catch(e) {
+                console.log('Audio not supported or blocked');
+            }
+        }
         
         // 특수 예외 처리어 사전 (키워드 -> 성경 본문 내의 실제 텍스트)
         const synonyms = {};
@@ -908,6 +937,7 @@
         }
 
         function createConfetti() {
+            if (typeof playSuccessSound === 'function') playSuccessSound();
             const container = document.querySelector('.app-container');
             const colors = ['#ef4444', '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899', '#06b6d4'];
             
