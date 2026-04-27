@@ -1,12 +1,20 @@
 function handleTypingKeypress(e) {
-    if (e.key === 'Enter' || e.key === ' ' || e.code === 'Space' || e.keyCode === 32 || e.keyCode === 13) {
-        if (e.key === ' ' || e.code === 'Space' || e.keyCode === 32) {
-            e.preventDefault(); // 스페이스바를 칠 때 입력창에 띄어쓰기가 들어가지 않게 방지
-        }
-        // 한글 IME 입력(조합)이 값에 반영될 수 있도록 미세한 지연 후 제출
-        setTimeout(() => {
+    if (e.key === 'Enter') {
+        submitTyping();
+    } else if (e.key === ' ') {
+        if (currentBlankIndex >= blanks.length) return;
+        const inputEl = document.getElementById('typingInput');
+        const userInput = inputEl.value;
+        const currentBlank = blanks[currentBlankIndex];
+        const answer = currentBlank.getAttribute('data-answer');
+        const regexRemoveSpecial = /[^가-힣a-zA-Z0-9]/g;
+        const normalizedInput = userInput.normalize('NFC').replace(regexRemoveSpecial, '');
+        const normalizedAnswer = (synonyms[answer] || answer).normalize('NFC').replace(regexRemoveSpecial, '');
+        
+        if (normalizedInput === normalizedAnswer && normalizedInput.length > 0) {
+            e.preventDefault();
             submitTyping();
-        }, 10);
+        }
     }
 }
 
